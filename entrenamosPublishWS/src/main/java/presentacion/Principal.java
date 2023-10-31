@@ -27,6 +27,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import java.awt.Insets;
 import persistencia.Conexion;
+import publicadores.ControladorPublish;
 
 public class Principal {
     private JFrame frame;
@@ -77,6 +78,9 @@ public class Principal {
     }
 
     public Principal() {
+        ControladorPublish cp = new ControladorPublish();
+        cp.publicar();
+
         iniciar();
         Fabrica fabrica = Fabrica.getInstancia();
         IControlador icon = fabrica.getIControlador();
