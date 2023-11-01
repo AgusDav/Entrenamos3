@@ -44,4 +44,9 @@ public class ControladorPublish {
     public void altaInstitucion(String nombre, String descripcion, String url) throws InstitucionDeportivaRepetidaException {
         icon.altaInstitucion(nombre,descripcion,url);
     }
+
+    @WebMethod
+    public boolean LogIn(String nick, String password){
+        return (icon.logIn(nick,password));
+    }
 }
