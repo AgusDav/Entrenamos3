@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="axis-1_4">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/axis-1_4" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/axis-1_4/docs/apiDocs" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/axis-1_4" />
+      <root url="file://$PROJECT_DIR$/axis-1_4/samples/ejb/src" />
+    </SOURCES>
+  </library>
+</component>

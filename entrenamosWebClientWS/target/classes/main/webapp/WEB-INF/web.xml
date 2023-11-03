@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>Entrenamos.uy</display-name>
+  <welcome-file-list>
+    <welcome-file>Login.jsp</welcome-file>
+    <welcome-file>Login.html</welcome-file>
+  </welcome-file-list>
+
+  <servlet>
+    <servlet-name>AgregarInstitucionServlet</servlet-name>
+    <servlet-class>main.servlets.AgregarInstitucionServ</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AgregarInstitucionServlet</servlet-name>
+    <url-pattern>/AgregarInstitucion</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>HeaderServ</servlet-name>
+    <servlet-class>main.servlets.headerServ</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>HeaderServ</servlet-name>
+    <url-pattern>/HeaderServ</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>main.servlets.LoginServ</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AgregarUsuarioServlet</servlet-name>
+    <servlet-class>main.servlets.AgregarUsuarioServ</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AgregarUsuarioServlet</servlet-name>
+    <url-pattern>/AgregarUsuario</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AgregarActividadServlet</servlet-name>
+    <servlet-class>main.servlets.AgregarActividadServ</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AgregarActividadServlet</servlet-name>
+    <url-pattern>/AgregarActividad</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AgregarDictadoClaseServlet</servlet-name>
+    <servlet-class>main.servlets.AgregarDictadoClaseServ</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AgregarDictadoClaseServlet</servlet-name>
+    <url-pattern>/AgregarDictadoClase</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ConsultaDictadoClaseServlet</servlet-name>
+    <servlet-class>main.servlets.ConsultaDictadoClaseServ</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ConsultaDictadoClaseServlet</servlet-name>
+    <url-pattern>/ConsultaDictadoClase</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RegistroADictadoClaseServlet</servlet-name>
+    <servlet-class>main.servlets.RegistroADictadoClaseServ</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RegistroADictadoClaseServlet</servlet-name>
+    <url-pattern>/RegistroADictadoClase</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ConsultaActividadDeportivaServlet</servlet-name>
+    <servlet-class>main.servlets.ConsultaActividadDeportivaServ</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ConsultaActividadDeportivaServlet</servlet-name>
+    <url-pattern>/ConsultaActividadDeportiva</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  <servlet-name>ConsultaUsuarioServ</servlet-name>
+  <servlet-class>main.servlets.ConsultaUsuarioServ</servlet-class>
+</servlet>
+
+  <servlet-mapping>
+    <servlet-name>ConsultaUsuarioServ</servlet-name>
+    <url-pattern>/ConsultaUsuario</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ModificarUsuarioServ</servlet-name>
+    <servlet-class>main.servlets.ModificarUsuarioServ</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ModificarUsuarioServ</servlet-name>
+    <url-pattern>/ModificarUsuario</url-pattern>
+  </servlet-mapping>
+
+</web-app>
+
