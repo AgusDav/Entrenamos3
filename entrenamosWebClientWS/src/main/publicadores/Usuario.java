@@ -7,20 +7,17 @@
 
 package main.publicadores;
 
-import com.google.gson.annotations.Expose;
-
 public abstract class Usuario  implements java.io.Serializable {
-    @Expose
     private java.lang.String apellido;
-    @Expose
+
     private java.lang.String email;
-    @Expose
+
     private java.util.Calendar fecNac;
-    @Expose
+
     private java.lang.String nickname;
-    @Expose
+
     private java.lang.String nombre;
-    @Expose
+
     private java.lang.String password;
 
     public Usuario() {

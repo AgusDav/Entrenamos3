@@ -7,15 +7,11 @@
 
 package main.publicadores;
 
-import com.google.gson.annotations.Expose;
-
 public class Profesor  extends main.publicadores.Usuario  implements java.io.Serializable {
-    @Expose
     private java.lang.String biografia;
-    @Expose
+
     private java.lang.String descripcion;
 
-    @Expose
     private java.lang.String sitioWeb;
 
     public Profesor() {

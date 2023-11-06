@@ -42,7 +42,7 @@ public class DtProfesor  extends main.publicadores.DtUsuario  implements java.io
 
     /**
      * Gets the biografia value for this DtProfesor.
-     *
+     * 
      * @return biografia
      */
     public java.lang.String getBiografia() {
@@ -52,7 +52,7 @@ public class DtProfesor  extends main.publicadores.DtUsuario  implements java.io
 
     /**
      * Sets the biografia value for this DtProfesor.
-     *
+     * 
      * @param biografia
      */
     public void setBiografia(java.lang.String biografia) {
@@ -62,7 +62,7 @@ public class DtProfesor  extends main.publicadores.DtUsuario  implements java.io
 
     /**
      * Gets the descripcion value for this DtProfesor.
-     *
+     * 
      * @return descripcion
      */
     public java.lang.String getDescripcion() {
@@ -72,7 +72,7 @@ public class DtProfesor  extends main.publicadores.DtUsuario  implements java.io
 
     /**
      * Sets the descripcion value for this DtProfesor.
-     *
+     * 
      * @param descripcion
      */
     public void setDescripcion(java.lang.String descripcion) {
@@ -82,7 +82,7 @@ public class DtProfesor  extends main.publicadores.DtUsuario  implements java.io
 
     /**
      * Gets the sitioWeb value for this DtProfesor.
-     *
+     * 
      * @return sitioWeb
      */
     public java.lang.String getSitioWeb() {
@@ -92,7 +92,7 @@ public class DtProfesor  extends main.publicadores.DtUsuario  implements java.io
 
     /**
      * Sets the sitioWeb value for this DtProfesor.
-     *
+     * 
      * @param sitioWeb
      */
     public void setSitioWeb(java.lang.String sitioWeb) {
@@ -110,14 +110,14 @@ public class DtProfesor  extends main.publicadores.DtUsuario  implements java.io
         }
         __equalsCalc = obj;
         boolean _equals;
-        _equals = super.equals(obj) &&
-            ((this.biografia==null && other.getBiografia()==null) ||
+        _equals = super.equals(obj) && 
+            ((this.biografia==null && other.getBiografia()==null) || 
              (this.biografia!=null &&
               this.biografia.equals(other.getBiografia()))) &&
-            ((this.descripcion==null && other.getDescripcion()==null) ||
+            ((this.descripcion==null && other.getDescripcion()==null) || 
              (this.descripcion!=null &&
               this.descripcion.equals(other.getDescripcion()))) &&
-            ((this.sitioWeb==null && other.getSitioWeb()==null) ||
+            ((this.sitioWeb==null && other.getSitioWeb()==null) || 
              (this.sitioWeb!=null &&
               this.sitioWeb.equals(other.getSitioWeb())));
         __equalsCalc = null;
@@ -184,10 +184,10 @@ public class DtProfesor  extends main.publicadores.DtUsuario  implements java.io
      * Get Custom Serializer
      */
     public static org.apache.axis.encoding.Serializer getSerializer(
-           java.lang.String mechType,
-           java.lang.Class _javaType,
+           java.lang.String mechType, 
+           java.lang.Class _javaType,  
            javax.xml.namespace.QName _xmlType) {
-        return
+        return 
           new  org.apache.axis.encoding.ser.BeanSerializer(
             _javaType, _xmlType, typeDesc);
     }
@@ -196,10 +196,10 @@ public class DtProfesor  extends main.publicadores.DtUsuario  implements java.io
      * Get Custom Deserializer
      */
     public static org.apache.axis.encoding.Deserializer getDeserializer(
-           java.lang.String mechType,
-           java.lang.Class _javaType,
+           java.lang.String mechType, 
+           java.lang.Class _javaType,  
            javax.xml.namespace.QName _xmlType) {
-        return
+        return 
           new  org.apache.axis.encoding.ser.BeanDeserializer(
             _javaType, _xmlType, typeDesc);
     }

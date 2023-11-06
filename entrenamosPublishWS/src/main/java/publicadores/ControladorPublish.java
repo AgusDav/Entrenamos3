@@ -138,10 +138,6 @@ public class ControladorPublish {
         return icon.obtenerRankingActividadesDeportivas();
     }
     @WebMethod
-    public Boolean logIn(String nick,String password){
-        return icon.logIn(nick, password);
-    }
-    @WebMethod
     public Boolean esSocio(String nick){
         return icon.esSocio(nick);
     }
