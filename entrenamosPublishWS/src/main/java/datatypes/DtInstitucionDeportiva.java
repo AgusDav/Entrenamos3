@@ -4,7 +4,10 @@ public class DtInstitucionDeportiva {
 	private String nombre;
 	private String descripcion;
 	private String url;
-	
+
+	public DtInstitucionDeportiva(){
+		super();
+	}
 	public DtInstitucionDeportiva(String n, String d, String u) {
 		super();
 		this.nombre = n;

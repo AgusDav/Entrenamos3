@@ -9,7 +9,10 @@ public class DtActividadDeportiva {
 	private int duracion;
 	private float costo;
 	private Date fecReg;
-	
+
+	public DtActividadDeportiva(){
+		super();
+	}
 	public DtActividadDeportiva(String n, String d, int dur, float c, Date f) {
 		super();
 		this.nombre = n;

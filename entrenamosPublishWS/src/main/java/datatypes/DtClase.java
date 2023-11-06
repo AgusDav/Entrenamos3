@@ -12,7 +12,10 @@ public class DtClase {
 	private String horaInicio;
 	private String url;
 	private Date fechaReg;
-	
+
+	public DtClase(){
+		super();
+	}
 	public DtClase(String n, Date f, String h, String u, Date fR) {
 		super();
 		this.nombre = n;
