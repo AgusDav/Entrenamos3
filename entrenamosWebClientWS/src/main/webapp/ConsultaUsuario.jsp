@@ -123,15 +123,10 @@
 </div>
 
 <script>
-    <%String nick = (String) session.getAttribute("username");
-    DtUsuario user = icon.obtenerUsuario(nick);%>
-    var user = {
-        nombre: "<%= user.getNombre() %>",
-        apellido: "<%= user.getApellido() %>",
-        email: "<%= user.getEmail() %>",
-        fecNac: "<%= user.getFecNac() %>",
-    };
-
+    <%String nick = (String) session.getAttribute("username");%>
+    fetch('/Entrenamos.uy/ConsultaUsuario?tipo=usuario&user=' + "<%= nick %>")
+        .then(response => response.json())
+        .then(data => {
     var nickInput = document.getElementById("nickname");
     var nombreInput = document.getElementById("nombre");
     var apellidoInput = document.getElementById("apellido");
@@ -139,15 +134,15 @@
     var fechaInput = document.getElementById("fecNac");
     var clasesInput = document.getElementById("Clases")
 
-    nickInput.value = "<%= nick %>";
-    nombreInput.value = user.nombre;
-    apellidoInput.value = user.apellido;
-    emailInput.value = user.email;
-    fechaInput.value = user.fecNac;
+    nickInput.value = data[0];
+    emailInput.value = data[1];
+    nombreInput.value = data[2];
+    apellidoInput.value = data[3];
+    fechaInput.value = data[4];
+        });
 
-    fetch('/Entrenamos.uy/ConsultaUsuario?user=' + "<%= nick %>", {
-        method: 'GET',
-    })
+    var clasesInput = document.getElementById("Clases");
+    fetch('/Entrenamos.uy/ConsultaUsuario?tipo=clases&user=' + "<%= nick %>")
         .then(response => response.json())
         .then(data => {
             // Limpiar el select de clases
@@ -156,12 +151,11 @@
             // Iterar sobre las clases obtenidas y agregarlas al select
             for (let i = 0; i < data.length; i++) {
                 let clase = data[i];
-
+                console.log("Valor de clase:", clase);
                 // Crear un nuevo elemento de opción
                 let option = document.createElement("option");
                 option.value = clase;
                 option.text = clase;
-
                 // Agregar la opción al select
                 clasesInput.appendChild(option);
             }

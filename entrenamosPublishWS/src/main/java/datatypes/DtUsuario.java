@@ -12,6 +12,9 @@ public abstract class DtUsuario {
 	protected String password;
 	protected Date fecNac;
 
+	public DtUsuario(){
+		super();
+	}
 	public DtUsuario(String n, String nom, String a, String e, String p, Date f) {
 		super();
 		this.nickname = n;

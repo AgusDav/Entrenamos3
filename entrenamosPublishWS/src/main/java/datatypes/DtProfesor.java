@@ -7,7 +7,10 @@ public class DtProfesor extends DtUsuario{
 	private String descripcion;
 	private String biografia;
 	private String sitioWeb;
-	
+
+	public DtProfesor(){
+		super();
+	}
 	public DtProfesor(String n, String nom, String a, String e, String p, Date f, String d, String b, String w) {
 		super(n, nom, a, e, p, f);
 		this.biografia = b;

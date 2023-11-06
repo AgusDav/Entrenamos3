@@ -1,10 +1,14 @@
 package publicadores;
 
 import configuraciones.WebServiceConfiguracion;
+import datatypes.DtProfesor;
+import datatypes.DtSocio;
 import datatypes.DtUsuario;
 import excepciones.InstitucionDeportivaRepetidaException;
 import interfaces.Fabrica;
 import interfaces.IControlador;
+import logica.Clase;
+import logica.Usuario;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -47,11 +51,24 @@ public class ControladorPublish {
     }
 
     @WebMethod
-    public DtUsuario obtenerUsuario(String nick) {
-        return obtenerUsuario(nick);
+    public DtProfesor obtenerProfesor(String nick) {
+        DtProfesor porongol = icon.obtenerProfesor(nick);
+        return porongol;
     }
     @WebMethod
     public boolean LogIn(String nick, String password){
         return (icon.logIn(nick,password));
+    }
+    @WebMethod
+    public boolean esSocio(String nick) {
+        return icon.esSocio(nick);
+    }
+    @WebMethod
+    public String[] usuarioEnClase(String nick){
+        return icon.usuarioEnClase(nick);
+    }
+    @WebMethod
+    public Clase obtenerClaseR(String nombreClase){
+        return icon.obtenerClaseR(nombreClase);
     }
 }

@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -295,6 +296,13 @@ public class Controlador implements IControlador{
 		DtUsuario dtU = u.getDtUsuario();
 		return dtU;
 	}
+	@Override
+	public DtProfesor obtenerProfesor(String nick) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario u = mU.buscarUsuario(nick);
+		DtProfesor dtU = (DtProfesor) u.getDtUsuario();
+		return dtU;
+	}
 	
 	@Override
 	public DtInstitucionDeportiva obtenerInstitucion(String nombre) {
@@ -419,6 +427,44 @@ public class Controlador implements IControlador{
 	    }
 		return ret;
 	}
+	public Boolean esSocio(String nick) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario user = mU.buscarUsuario(nick);
+		return user instanceof Profesor ? false : true;
+	}
 
-	
+	public String[] usuarioEnClase(String nick) {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager em = conexion.getEntityManager();
+		Query query = em.createQuery("select r from Registro r where socio.nickname = :nick").setParameter("nick", nick);
+		List<Registro> listCla = query.getResultList();
+		String[] aRetornar = new String[listCla.size()];
+		int i = 0;
+
+		for(Iterator var8 = listCla.iterator(); var8.hasNext(); ++i) {
+			Registro r = (Registro)var8.next();
+			aRetornar[i] = r.getClase().getNombre();
+		}
+
+		return aRetornar;
+	}
+
+	public String[] clasesProfe(String nick) {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager em = conexion.getEntityManager();
+		Query query = em.createQuery("select c from Clase c where profe.nickname = :nick").setParameter("nick", nick);
+		List<Clase> listCla = query.getResultList();
+		String[] aRetornar = new String[listCla.size()];
+		int i = 0;
+
+		for(Iterator var8 = listCla.iterator(); var8.hasNext(); ++i) {
+			Clase c = (Clase)var8.next();
+			aRetornar[i] = c.getNombre();
+		}
+
+		return aRetornar;
+	}
+
+
+
 }

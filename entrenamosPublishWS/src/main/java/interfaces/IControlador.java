@@ -35,6 +35,7 @@ public interface IControlador {
 	public String[] listarSocios(String nombre);
 	public String[] listarUsuarios();
 	public DtUsuario obtenerUsuario(String nick);
+	public DtProfesor obtenerProfesor(String nick);
 	public Usuario obtenerUsuarioReal(String nick);
 	public DtActividadDeportiva obtenerActividad(String instituto, String actividad);
 	public ActividadDeportiva obtenerActividadR(String instituto, String actividad);
@@ -51,4 +52,7 @@ public interface IControlador {
 	public void ModificarInstitucion(String nombre,String desc,String url);
 	public String[] obtenerRankingActividadesDeportivas();
 	public Boolean logIn(String nick,String password);
+	public Boolean esSocio(String nick);
+	public String[] usuarioEnClase(String nick);
+	public String[] clasesProfe(String var1);
 }

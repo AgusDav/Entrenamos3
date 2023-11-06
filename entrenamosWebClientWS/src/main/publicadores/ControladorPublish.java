@@ -8,7 +8,10 @@
 package main.publicadores;
 
 public interface ControladorPublish extends java.rmi.Remote {
+    public main.publicadores.DtProfesor obtenerProfesor(java.lang.String arg0) throws java.rmi.RemoteException;
+    public boolean esSocio(java.lang.String arg0) throws java.rmi.RemoteException;
+    public java.lang.String[] usuarioEnClase(java.lang.String arg0) throws java.rmi.RemoteException;
     public boolean logIn(java.lang.String arg0, java.lang.String arg1) throws java.rmi.RemoteException;
     public void altaInstitucion(java.lang.String arg0, java.lang.String arg1, java.lang.String arg2) throws java.rmi.RemoteException, main.publicadores.InstitucionDeportivaRepetidaException;
-    public main.publicadores.DtUsuario obtenerUsuario(java.lang.String arg0) throws java.rmi.RemoteException;
+    public main.publicadores.Clase obtenerClaseR(java.lang.String arg0) throws java.rmi.RemoteException;
 }

@@ -3,7 +3,28 @@
 <xsd:schema>
 <xsd:import namespace="http://publicadores/" schemaLocation="http://127.0.0.1:1942/controlador?xsd=1"/>
 </xsd:schema>
+<xsd:schema>
+<xsd:import namespace="http://jaxb.dev.java.net/array" schemaLocation="http://127.0.0.1:1942/controlador?xsd=2"/>
+</xsd:schema>
 </types>
+<message name="obtenerProfesor">
+<part name="arg0" type="xsd:string"/>
+</message>
+<message name="obtenerProfesorResponse">
+<part name="return" type="tns:dtProfesor"/>
+</message>
+<message name="esSocio">
+<part name="arg0" type="xsd:string"/>
+</message>
+<message name="esSocioResponse">
+<part name="return" type="xsd:boolean"/>
+</message>
+<message name="usuarioEnClase">
+<part name="arg0" type="xsd:string"/>
+</message>
+<message name="usuarioEnClaseResponse">
+<part xmlns:ns1="http://jaxb.dev.java.net/array" name="return" type="ns1:stringArray"/>
+</message>
 <message name="LogIn">
 <part name="arg0" type="xsd:string"/>
 <part name="arg1" type="xsd:string"/>
@@ -20,13 +41,25 @@
 <message name="InstitucionDeportivaRepetidaException">
 <part name="fault" element="tns:InstitucionDeportivaRepetidaException"/>
 </message>
-<message name="obtenerUsuario">
+<message name="obtenerClaseR">
 <part name="arg0" type="xsd:string"/>
 </message>
-<message name="obtenerUsuarioResponse">
-<part name="return" type="tns:dtUsuario"/>
+<message name="obtenerClaseRResponse">
+<part name="return" type="tns:clase"/>
 </message>
 <portType name="ControladorPublish">
+<operation name="obtenerProfesor">
+<input wsam:Action="http://publicadores/ControladorPublish/obtenerProfesorRequest" message="tns:obtenerProfesor"/>
+<output wsam:Action="http://publicadores/ControladorPublish/obtenerProfesorResponse" message="tns:obtenerProfesorResponse"/>
+</operation>
+<operation name="esSocio">
+<input wsam:Action="http://publicadores/ControladorPublish/esSocioRequest" message="tns:esSocio"/>
+<output wsam:Action="http://publicadores/ControladorPublish/esSocioResponse" message="tns:esSocioResponse"/>
+</operation>
+<operation name="usuarioEnClase">
+<input wsam:Action="http://publicadores/ControladorPublish/usuarioEnClaseRequest" message="tns:usuarioEnClase"/>
+<output wsam:Action="http://publicadores/ControladorPublish/usuarioEnClaseResponse" message="tns:usuarioEnClaseResponse"/>
+</operation>
 <operation name="LogIn" parameterOrder="arg0 arg1">
 <input wsam:Action="http://publicadores/ControladorPublish/LogInRequest" message="tns:LogIn"/>
 <output wsam:Action="http://publicadores/ControladorPublish/LogInResponse" message="tns:LogInResponse"/>
@@ -36,13 +69,40 @@
 <output wsam:Action="http://publicadores/ControladorPublish/altaInstitucionResponse" message="tns:altaInstitucionResponse"/>
 <fault message="tns:InstitucionDeportivaRepetidaException" name="InstitucionDeportivaRepetidaException" wsam:Action="http://publicadores/ControladorPublish/altaInstitucion/Fault/InstitucionDeportivaRepetidaException"/>
 </operation>
-<operation name="obtenerUsuario">
-<input wsam:Action="http://publicadores/ControladorPublish/obtenerUsuarioRequest" message="tns:obtenerUsuario"/>
-<output wsam:Action="http://publicadores/ControladorPublish/obtenerUsuarioResponse" message="tns:obtenerUsuarioResponse"/>
+<operation name="obtenerClaseR">
+<input wsam:Action="http://publicadores/ControladorPublish/obtenerClaseRRequest" message="tns:obtenerClaseR"/>
+<output wsam:Action="http://publicadores/ControladorPublish/obtenerClaseRResponse" message="tns:obtenerClaseRResponse"/>
 </operation>
 </portType>
 <binding name="ControladorPublishPortBinding" type="tns:ControladorPublish">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+<operation name="obtenerProfesor">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</input>
+<output>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</output>
+</operation>
+<operation name="esSocio">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</input>
+<output>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</output>
+</operation>
+<operation name="usuarioEnClase">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</input>
+<output>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</output>
+</operation>
 <operation name="LogIn">
 <soap:operation soapAction=""/>
 <input>
@@ -64,7 +124,7 @@
 <soap:fault name="InstitucionDeportivaRepetidaException" use="literal"/>
 </fault>
 </operation>
-<operation name="obtenerUsuario">
+<operation name="obtenerClaseR">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal" namespace="http://publicadores/"/>
