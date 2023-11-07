@@ -168,26 +168,31 @@
 
 <!--Script para mostrar o no las actividades-->
 <script>
+    <%String nick2 = (String) session.getAttribute("username");%>
     var actividades = document.getElementById("Actividades");
     var userType;
-    <% fabrica = Fabrica.getInstancia();
-    icon = fabrica.getIControlador();
-    session = request.getSession();
-    nickname = (String) session.getAttribute("username");
-    if(icon.esSocio(nickname)){
-        %>
-    userType = "S";
-    <%
-}else{
-    %>
-    userType = "P";
-    <%
-}
-%>
+    // Define la función para hacer una solicitud utilizando fetch
+    function obtenerTipoUsuario(nickname) {
+        fetch('/Entrenamos.uy/ConsultaUsuario?tipo=socio&user=' + "<%= nick2 %>")
+            .then(function(response) {
+                return response.json(); // Parsea la respuesta JSON
+            })
+            .then(function(data) {
 
-    if(userType === "S"){
-        actividades.style.display = "none";
+                if (data) {
+                    userType = "S";
+                    actividades.style.display = "none";
+                }
+                else{
+                    userType = "P";
+                }
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+            });
     }
+    // Llama a la función para obtener el tipo de usuario
+    obtenerTipoUsuario("<%= nick2 %>");
 </script>
 
 <script>

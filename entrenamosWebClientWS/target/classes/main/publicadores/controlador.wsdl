@@ -13,6 +13,12 @@
 <message name="obtenerProfesorResponse">
 <part name="return" type="tns:dtProfesor"/>
 </message>
+<message name="obtenerSocio">
+<part name="arg0" type="xsd:string"/>
+</message>
+<message name="obtenerSocioResponse">
+<part name="return" type="tns:dtSocio"/>
+</message>
 <message name="esSocio">
 <part name="arg0" type="xsd:string"/>
 </message>
@@ -170,6 +176,10 @@
 <input wsam:Action="http://publicadores/ControladorPublish/obtenerProfesorRequest" message="tns:obtenerProfesor"/>
 <output wsam:Action="http://publicadores/ControladorPublish/obtenerProfesorResponse" message="tns:obtenerProfesorResponse"/>
 </operation>
+<operation name="obtenerSocio">
+<input wsam:Action="http://publicadores/ControladorPublish/obtenerSocioRequest" message="tns:obtenerSocio"/>
+<output wsam:Action="http://publicadores/ControladorPublish/obtenerSocioResponse" message="tns:obtenerSocioResponse"/>
+</operation>
 <operation name="esSocio">
 <input wsam:Action="http://publicadores/ControladorPublish/esSocioRequest" message="tns:esSocio"/>
 <output wsam:Action="http://publicadores/ControladorPublish/esSocioResponse" message="tns:esSocioResponse"/>
@@ -275,6 +285,15 @@
 <binding name="ControladorPublishPortBinding" type="tns:ControladorPublish">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
 <operation name="obtenerProfesor">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</input>
+<output>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</output>
+</operation>
+<operation name="obtenerSocio">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal" namespace="http://publicadores/"/>
