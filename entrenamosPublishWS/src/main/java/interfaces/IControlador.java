@@ -36,6 +36,7 @@ public interface IControlador {
 	public String[] listarUsuarios();
 	public DtUsuario obtenerUsuario(String nick);
 	public DtProfesor obtenerProfesor(String nick);
+	public DtSocio obtenerSocio(String nick);
 	public Usuario obtenerUsuarioReal(String nick);
 	public DtActividadDeportiva obtenerActividad(String instituto, String actividad);
 	public ActividadDeportiva obtenerActividadR(String instituto, String actividad);

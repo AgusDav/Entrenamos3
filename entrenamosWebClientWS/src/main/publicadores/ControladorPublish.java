@@ -9,6 +9,7 @@ package main.publicadores;
 
 public interface ControladorPublish extends java.rmi.Remote {
     public main.publicadores.DtProfesor obtenerProfesor(java.lang.String arg0) throws java.rmi.RemoteException;
+    public main.publicadores.DtSocio obtenerSocio(java.lang.String arg0) throws java.rmi.RemoteException;
     public boolean esSocio(java.lang.String arg0) throws java.rmi.RemoteException;
     public java.lang.String[] usuarioEnClase(java.lang.String arg0) throws java.rmi.RemoteException;
     public java.lang.String[] clasesProfe(java.lang.String arg0) throws java.rmi.RemoteException;

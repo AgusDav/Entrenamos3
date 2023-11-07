@@ -82,6 +82,10 @@ public class ControladorPublish {
         return icon.obtenerProfesor(nick);
     }
     @WebMethod
+    public DtSocio obtenerSocio(String nick){
+        return icon.obtenerSocio(nick);
+    }
+    @WebMethod
     public Usuario obtenerUsuarioReal(String nick){
         return icon.obtenerUsuarioReal(nick);
     }

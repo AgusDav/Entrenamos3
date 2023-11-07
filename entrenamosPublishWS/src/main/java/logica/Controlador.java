@@ -303,6 +303,13 @@ public class Controlador implements IControlador{
 		DtProfesor dtU = (DtProfesor) u.getDtUsuario();
 		return dtU;
 	}
+	@Override
+	public DtSocio obtenerSocio(String nick) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario u = mU.buscarUsuario(nick);
+		DtSocio dtU = (DtSocio) u.getDtUsuario();
+		return dtU;
+	}
 	
 	@Override
 	public DtInstitucionDeportiva obtenerInstitucion(String nombre) {
