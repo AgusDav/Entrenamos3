@@ -1,5 +1,9 @@
-<%@ page import="interfaces.Fabrica" %>
-<%@ page import="interfaces.IControlador" %>
+
+<%@ page import="main.publicadores.ControladorPublishService" %>
+<%@ page import="main.publicadores.ControladorPublishServiceLocator" %>
+<%@ page import="main.publicadores.ControladorPublish" %>
+<%@ page import="java.rmi.RemoteException" %>
+<%@ page import="javax.xml.rpc.ServiceException" %>
 <!DOCTYPE html>
 <html>
 
@@ -61,7 +65,12 @@
         <select name="actividad" class="form-control" id="inputActD">
             <option value="" selected disabled>Selecciona una Actividad Deportiva</option>
             <%
-                String[] actividades = icon.obtenerTodasActividadesDeportivas();
+                String[] actividades = new String[0];
+                try {
+                    actividades = obtenerTodasActividadesDeportivas();
+                } catch (ServiceException e) {
+                    throw new RuntimeException(e);
+                }
                 for (String actividadD : actividades) {
             %>
             <option value="<%= actividadD %>"><%= actividadD %></option>
@@ -155,3 +164,10 @@
 <%@include file="footer.jsp" %>
 </body>
 </html>
+<%!
+    private String[] obtenerTodasActividadesDeportivas() throws RemoteException, ServiceException {
+        ControladorPublishService cps = new ControladorPublishServiceLocator();
+        ControladorPublish port = cps.getControladorPublishPort();
+        return port.obtenerTodasActividadesDeportivas();
+    }
+%>

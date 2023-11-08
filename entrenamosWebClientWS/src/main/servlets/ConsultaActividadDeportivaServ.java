@@ -1,21 +1,24 @@
 package main.servlets;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
-import datatypes.DtActividadDeportiva;
+import main.publicadores.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import interfaces.Fabrica;
-import interfaces.IControlador;
-import logica.Clase;
+import main.publicadores.ControladorPublish;
+import main.publicadores.ControladorPublishService;
+import main.publicadores.ControladorPublishServiceLocator;
+
+import javax.xml.rpc.ServiceException;
 
 @WebServlet("/Entrenamos.uy/ConsultaActividadDeportiva")
 public class ConsultaActividadDeportivaServ extends HttpServlet {
@@ -25,9 +28,7 @@ public class ConsultaActividadDeportivaServ extends HttpServlet {
         super();
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Aquí obtienes la instancia de la fábrica y del controlador
-        Fabrica fabrica = Fabrica.getInstancia();
-        IControlador icon = fabrica.getIControlador();
+        // Aquí obtienes la instancia de la fábrica y del controlado
 
         // Obtienes el parámetro de la actividad desde la solicitud
         String actividadSeleccionada = request.getParameter("actividad");
@@ -37,8 +38,18 @@ public class ConsultaActividadDeportivaServ extends HttpServlet {
         if (actividadSeleccionada != null && !actividadSeleccionada.isEmpty()) {
             if ("dt".equals(tipo)) {
                 // Obtienes el DtActividadDeportiva
-                String ins = icon.obtenerInstitucionActividad(actividadSeleccionada);
-                DtActividadDeportiva dt = icon.obtenerActividad(ins, actividadSeleccionada);
+                String ins = null;
+                try {
+                    ins = obtenerInstitucionActividad(actividadSeleccionada);
+                } catch (ServiceException e) {
+                    throw new RuntimeException(e);
+                }
+                DtActividadDeportiva dt = null;
+                try {
+                    dt = obtenerActividad(ins, actividadSeleccionada);
+                } catch (ServiceException e) {
+                    throw new RuntimeException(e);
+                }
 
                 // Conviertes el objeto DtActividadDeportiva a JSON
                 Gson gson = new Gson();
@@ -52,8 +63,18 @@ public class ConsultaActividadDeportivaServ extends HttpServlet {
             }
             else if ("clases".equals(tipo)){
                 // Obtienes el arreglo de clases correspondientes a la actividad
-                String ins = icon.obtenerInstitucionActividad(actividadSeleccionada);
-                String[] clases  = icon.listarClases(ins,actividadSeleccionada);
+                String ins = null;
+                try {
+                    ins = obtenerInstitucionActividad(actividadSeleccionada);
+                } catch (ServiceException e) {
+                    throw new RuntimeException(e);
+                }
+                String[] clases  = new String[0];
+                try {
+                    clases = listarClases(ins,actividadSeleccionada);
+                } catch (ServiceException e) {
+                    throw new RuntimeException(e);
+                }
 
                 // Conviertes el arreglo de clases a JSON utilizando Gson
                 Gson gson = new Gson();
@@ -67,7 +88,12 @@ public class ConsultaActividadDeportivaServ extends HttpServlet {
             }
             else if ("nomIns".equals(tipo)) {
                 // Obtienes la institución correspondiente a la actividad
-                String ins = icon.obtenerInstitucionActividad(actividadSeleccionada);
+                String ins = null;
+                try {
+                    ins = obtenerInstitucionActividad(actividadSeleccionada);
+                } catch (ServiceException e) {
+                    throw new RuntimeException(e);
+                }
 
                 // Estableces el tipo de contenido de la respuesta como JSON
                 response.setContentType("application/json");
@@ -77,4 +103,24 @@ public class ConsultaActividadDeportivaServ extends HttpServlet {
             }
         }
     }
+
+    public String obtenerInstitucionActividad(String actividad) throws RemoteException, ServiceException {
+        ControladorPublishService cps = new ControladorPublishServiceLocator();
+        ControladorPublish port = cps.getControladorPublishPort();
+        return port.obtenerInstitucionActividad(actividad);
+    }
+
+    public DtActividadDeportiva obtenerActividad(String ins, String actividad) throws RemoteException, ServiceException {
+        ControladorPublishService cps = new ControladorPublishServiceLocator();
+        ControladorPublish port = cps.getControladorPublishPort();
+        return port.obtenerActividad(ins, actividad);
+    }
+
+    public String[] listarClases(String ins, String actividad) throws RemoteException, ServiceException {
+        ControladorPublishService cps = new ControladorPublishServiceLocator();
+        ControladorPublish port = cps.getControladorPublishPort();
+        return port.listarClases(ins, actividad);
+    }
+
+
 }
