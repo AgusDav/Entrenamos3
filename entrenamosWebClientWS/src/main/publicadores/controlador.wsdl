@@ -7,6 +7,12 @@
 <xsd:import namespace="http://jaxb.dev.java.net/array" schemaLocation="http://127.0.0.1:1942/controlador?xsd=2"/>
 </xsd:schema>
 </types>
+<message name="obtenerSociosClase">
+<part name="arg0" type="xsd:string"/>
+</message>
+<message name="obtenerSociosClaseResponse">
+<part xmlns:ns1="http://jaxb.dev.java.net/array" name="return" type="ns1:stringArray"/>
+</message>
 <message name="obtenerProfesor">
 <part name="arg0" type="xsd:string"/>
 </message>
@@ -29,13 +35,13 @@
 <part name="arg0" type="xsd:string"/>
 </message>
 <message name="usuarioEnClaseResponse">
-<part xmlns:ns1="http://jaxb.dev.java.net/array" name="return" type="ns1:stringArray"/>
+<part xmlns:ns2="http://jaxb.dev.java.net/array" name="return" type="ns2:stringArray"/>
 </message>
 <message name="clasesProfe">
 <part name="arg0" type="xsd:string"/>
 </message>
 <message name="clasesProfeResponse">
-<part xmlns:ns2="http://jaxb.dev.java.net/array" name="return" type="ns2:stringArray"/>
+<part xmlns:ns3="http://jaxb.dev.java.net/array" name="return" type="ns3:stringArray"/>
 </message>
 <message name="LogIn">
 <part name="arg0" type="xsd:string"/>
@@ -55,7 +61,7 @@
 </message>
 <message name="listarInstitutos"/>
 <message name="listarInstitutosResponse">
-<part xmlns:ns3="http://jaxb.dev.java.net/array" name="return" type="ns3:stringArray"/>
+<part xmlns:ns4="http://jaxb.dev.java.net/array" name="return" type="ns4:stringArray"/>
 </message>
 <message name="obtenerInstitucion">
 <part name="arg0" type="xsd:string"/>
@@ -83,13 +89,13 @@
 <part name="arg0" type="xsd:string"/>
 </message>
 <message name="listarActividadesDeportivasResponse">
-<part xmlns:ns4="http://jaxb.dev.java.net/array" name="return" type="ns4:stringArray"/>
+<part xmlns:ns5="http://jaxb.dev.java.net/array" name="return" type="ns5:stringArray"/>
 </message>
 <message name="listarProfesores">
 <part name="arg0" type="xsd:string"/>
 </message>
 <message name="listarProfesoresResponse">
-<part xmlns:ns5="http://jaxb.dev.java.net/array" name="return" type="ns5:stringArray"/>
+<part xmlns:ns6="http://jaxb.dev.java.net/array" name="return" type="ns6:stringArray"/>
 </message>
 <message name="altaActividadDeportiva">
 <part name="arg0" type="xsd:string"/>
@@ -103,7 +109,7 @@
 <part name="arg0" type="xsd:string"/>
 </message>
 <message name="listarSociosResponse">
-<part xmlns:ns6="http://jaxb.dev.java.net/array" name="return" type="ns6:stringArray"/>
+<part xmlns:ns7="http://jaxb.dev.java.net/array" name="return" type="ns7:stringArray"/>
 </message>
 <message name="ModificarUsuario">
 <part name="arg0" type="xsd:string"/>
@@ -117,14 +123,14 @@
 <message name="ModificarUsuarioResponse"/>
 <message name="listarClases2"/>
 <message name="listarClases2Response">
-<part xmlns:ns7="http://jaxb.dev.java.net/array" name="return" type="ns7:stringArray"/>
+<part xmlns:ns8="http://jaxb.dev.java.net/array" name="return" type="ns8:stringArray"/>
 </message>
 <message name="listarClases">
 <part name="arg0" type="xsd:string"/>
 <part name="arg1" type="xsd:string"/>
 </message>
 <message name="listarClasesResponse">
-<part xmlns:ns8="http://jaxb.dev.java.net/array" name="return" type="ns8:stringArray"/>
+<part xmlns:ns9="http://jaxb.dev.java.net/array" name="return" type="ns9:stringArray"/>
 </message>
 <message name="registroADictadoClase">
 <part name="arg0" type="xsd:string"/>
@@ -174,7 +180,7 @@
 </message>
 <message name="listarUsuarios"/>
 <message name="listarUsuariosResponse">
-<part xmlns:ns9="http://jaxb.dev.java.net/array" name="return" type="ns9:stringArray"/>
+<part xmlns:ns10="http://jaxb.dev.java.net/array" name="return" type="ns10:stringArray"/>
 </message>
 <message name="obtenerActividadR">
 <part name="arg0" type="xsd:string"/>
@@ -185,11 +191,11 @@
 </message>
 <message name="obtenerRankingActividadesDeportivas"/>
 <message name="obtenerRankingActividadesDeportivasResponse">
-<part xmlns:ns10="http://jaxb.dev.java.net/array" name="return" type="ns10:stringArray"/>
+<part xmlns:ns11="http://jaxb.dev.java.net/array" name="return" type="ns11:stringArray"/>
 </message>
 <message name="obtenerTodasActividadesDeportivas"/>
 <message name="obtenerTodasActividadesDeportivasResponse">
-<part xmlns:ns11="http://jaxb.dev.java.net/array" name="return" type="ns11:stringArray"/>
+<part xmlns:ns12="http://jaxb.dev.java.net/array" name="return" type="ns12:stringArray"/>
 </message>
 <message name="ModificarActividadDeportiva">
 <part name="arg0" type="xsd:string"/>
@@ -199,6 +205,10 @@
 </message>
 <message name="ModificarActividadDeportivaResponse"/>
 <portType name="ControladorPublish">
+<operation name="obtenerSociosClase">
+<input wsam:Action="http://publicadores/ControladorPublish/obtenerSociosClaseRequest" message="tns:obtenerSociosClase"/>
+<output wsam:Action="http://publicadores/ControladorPublish/obtenerSociosClaseResponse" message="tns:obtenerSociosClaseResponse"/>
+</operation>
 <operation name="obtenerProfesor">
 <input wsam:Action="http://publicadores/ControladorPublish/obtenerProfesorRequest" message="tns:obtenerProfesor"/>
 <output wsam:Action="http://publicadores/ControladorPublish/obtenerProfesorResponse" message="tns:obtenerProfesorResponse"/>
@@ -326,6 +336,15 @@
 </portType>
 <binding name="ControladorPublishPortBinding" type="tns:ControladorPublish">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+<operation name="obtenerSociosClase">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</input>
+<output>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</output>
+</operation>
 <operation name="obtenerProfesor">
 <soap:operation soapAction=""/>
 <input>

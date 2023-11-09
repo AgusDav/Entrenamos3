@@ -9,7 +9,7 @@
     <title>Consulta Usuario</title>
     <style>
         body {
-            background-image: url('https://wallpapercave.com/dwp1x/wp3006474.jpg');
+            background-image: url('https://cloudfront-eu-central-1.images.arcpublishing.com/prisaradio/45AV7TSTWNOSTOQYC473FC5IJY.jpg');
             background-size: cover;
             background-attachment: fixed;
             background-repeat: no-repeat;
@@ -26,6 +26,7 @@
             margin: 0 auto;
             max-width: 600px;
             padding: 20px;
+            position: relative;
         }
 
         label {
@@ -48,30 +49,48 @@
             outline: none;
             border: 1px solid #007BFF;
         }
+
+        #myVideoText {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #playButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: url('https://cdn-icons-png.flaticon.com/512/148/148744.png') no-repeat center center;
+            background-size: contain;
+            width: 60px;
+            height: 60px;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <video controls autoplay muted id="myVideo">
+    <div id="myVideoText">Apreta no seas puto</div>
+    <button id="playButton"></button>
+    <video controls autoplay id="myVideo">
         <source src="bellingham.mp4" type="video/mp4">
         Tu navegador no soporta la reproducción de videos.
     </video>
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var video = document.getElementById('myVideo');
+        var playButton = document.getElementById('playButton');
 
-        // Espera hasta que el video esté listo para reproducirse
-        video.addEventListener('canplaythrough', function() {
-            // Reproduce el video
-            video.play().then(function() {
-                // Quitar el mute después de iniciar la reproducción
-                video.muted = false;
-            }).catch(function(error) {
-                console.log("Error al intentar reproducir el video con sonido:", error);
-            });
+        playButton.addEventListener('click', function() {
+            video.play();
+            playButton.style.display = 'none';
         });
     });
 </script>
+
 </body>
 </html>

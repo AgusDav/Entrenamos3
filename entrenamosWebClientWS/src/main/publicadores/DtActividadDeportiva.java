@@ -47,8 +47,6 @@ public class DtActividadDeportiva  implements java.io.Serializable {
         calendarInicio.setTime(fecAlta);
         this.fecReg = calendarInicio;
     }
-
-
     /**
      * Gets the costo value for this DtActividadDeportiva.
      * 

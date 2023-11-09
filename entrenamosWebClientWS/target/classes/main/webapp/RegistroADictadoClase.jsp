@@ -81,7 +81,7 @@
             var institucionSeleccionada = institucionSelect.value;
 
             // Realizar una solicitud al servidor con la institución seleccionada
-            fetch('/Entrenamos.uy/AgregarDictadoClase?institucion=' + institucionSeleccionada)
+            fetch('/Entrenamos.uy/AgregarDictadoClase?tipo=actividades&institucion=' + institucionSeleccionada)
                 .then(response => response.json())
                 .then(data => {
                     // Limpiar el select de actividades

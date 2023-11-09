@@ -1,5 +1,8 @@
-<%@ page import="interfaces.Fabrica" %>
-<%@ page import="interfaces.IControlador" %>
+<%@ page import="main.publicadores.ControladorPublishServiceLocator" %>
+<%@ page import="main.publicadores.ControladorPublishService" %>
+<%@ page import="main.publicadores.ControladorPublish" %>
+<%@ page import="javax.xml.rpc.ServiceException" %>
+<%@ page import="java.rmi.RemoteException" %>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
 	  integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	  crossorigin="anonymous">
@@ -71,20 +74,21 @@
 	<script>
 		// Supongamos que tienes una variable userType que indica el tipo de usuario
 		var userType; // Esto es lo que obtienes de la JSP
-		<%	Fabrica fabrica = Fabrica.getInstancia();
-			IControlador icon = fabrica.getIControlador();
-			session = request.getSession();
+		<%	session = request.getSession();
 			String nickname = (String) session.getAttribute("username");
-			if(icon.esSocio(nickname)){
-				%>
-					userType = "S";
-				<%
-			}else{
-				%>
-				userType = "P";
-				<%
-			}
-		%>
+			try {
+				if(esSocio(nickname)){
+					%>
+						userType = "S";
+					<%
+				}else{
+					%>
+					userType = "P";
+					<%
+				}} catch (ServiceException e) {
+					throw new RuntimeException(e);
+				}
+						%>
 
 		// Función para mostrar u ocultar elementos del menú según el tipo de usuario
 		function toggleMenuItems() {
@@ -129,3 +133,10 @@
 	</script>
 </body>
 </html>
+<%!
+	private Boolean esSocio(String nick) throws ServiceException, RemoteException {
+		ControladorPublishService cps = new ControladorPublishServiceLocator();
+		ControladorPublish port = cps.getControladorPublishPort();
+		return port.esSocio(nick);
+	}
+%>
