@@ -221,7 +221,6 @@ public class Controlador implements IControlador{
 			actD.agregarClase(clase, profesor);
 			profesor.añadirClase(cl);
 			mC.addClase(actD.obtenerClase(clase.getNombre()));
-			
 		}
 	}
 	

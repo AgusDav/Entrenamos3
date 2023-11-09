@@ -69,6 +69,16 @@
 <part name="arg2" type="xsd:string"/>
 </message>
 <message name="ModificarInstitucionResponse"/>
+<message name="altaDictadoClase">
+<part name="arg0" type="tns:dtClase"/>
+<part name="arg1" type="xsd:string"/>
+<part name="arg2" type="xsd:string"/>
+<part name="arg3" type="xsd:string"/>
+</message>
+<message name="altaDictadoClaseResponse"/>
+<message name="DictadoRepetidoException">
+<part name="fault" element="tns:DictadoRepetidoException"/>
+</message>
 <message name="listarActividadesDeportivas">
 <part name="arg0" type="xsd:string"/>
 </message>
@@ -80,6 +90,14 @@
 </message>
 <message name="listarProfesoresResponse">
 <part xmlns:ns5="http://jaxb.dev.java.net/array" name="return" type="ns5:stringArray"/>
+</message>
+<message name="altaActividadDeportiva">
+<part name="arg0" type="xsd:string"/>
+<part name="arg1" type="tns:dtActividadDeportiva"/>
+</message>
+<message name="altaActividadDeportivaResponse"/>
+<message name="ActividadDeportivaRepetidaException">
+<part name="fault" element="tns:ActividadDeportivaRepetidaException"/>
 </message>
 <message name="listarSocios">
 <part name="arg0" type="xsd:string"/>
@@ -107,6 +125,15 @@
 </message>
 <message name="listarClasesResponse">
 <part xmlns:ns8="http://jaxb.dev.java.net/array" name="return" type="ns8:stringArray"/>
+</message>
+<message name="registroADictadoClase">
+<part name="arg0" type="xsd:string"/>
+<part name="arg1" type="xsd:string"/>
+<part name="arg2" type="xsd:dateTime"/>
+</message>
+<message name="registroADictadoClaseResponse"/>
+<message name="RegistroAClaseRepetidoException">
+<part name="fault" element="tns:RegistroAClaseRepetidoException"/>
 </message>
 <message name="obtenerUsuario">
 <part name="arg0" type="xsd:string"/>
@@ -213,6 +240,11 @@
 <input wsam:Action="http://publicadores/ControladorPublish/ModificarInstitucionRequest" message="tns:ModificarInstitucion"/>
 <output wsam:Action="http://publicadores/ControladorPublish/ModificarInstitucionResponse" message="tns:ModificarInstitucionResponse"/>
 </operation>
+<operation name="altaDictadoClase" parameterOrder="arg0 arg1 arg2 arg3">
+<input wsam:Action="http://publicadores/ControladorPublish/altaDictadoClaseRequest" message="tns:altaDictadoClase"/>
+<output wsam:Action="http://publicadores/ControladorPublish/altaDictadoClaseResponse" message="tns:altaDictadoClaseResponse"/>
+<fault message="tns:DictadoRepetidoException" name="DictadoRepetidoException" wsam:Action="http://publicadores/ControladorPublish/altaDictadoClase/Fault/DictadoRepetidoException"/>
+</operation>
 <operation name="listarActividadesDeportivas">
 <input wsam:Action="http://publicadores/ControladorPublish/listarActividadesDeportivasRequest" message="tns:listarActividadesDeportivas"/>
 <output wsam:Action="http://publicadores/ControladorPublish/listarActividadesDeportivasResponse" message="tns:listarActividadesDeportivasResponse"/>
@@ -220,6 +252,11 @@
 <operation name="listarProfesores">
 <input wsam:Action="http://publicadores/ControladorPublish/listarProfesoresRequest" message="tns:listarProfesores"/>
 <output wsam:Action="http://publicadores/ControladorPublish/listarProfesoresResponse" message="tns:listarProfesoresResponse"/>
+</operation>
+<operation name="altaActividadDeportiva" parameterOrder="arg0 arg1">
+<input wsam:Action="http://publicadores/ControladorPublish/altaActividadDeportivaRequest" message="tns:altaActividadDeportiva"/>
+<output wsam:Action="http://publicadores/ControladorPublish/altaActividadDeportivaResponse" message="tns:altaActividadDeportivaResponse"/>
+<fault message="tns:ActividadDeportivaRepetidaException" name="ActividadDeportivaRepetidaException" wsam:Action="http://publicadores/ControladorPublish/altaActividadDeportiva/Fault/ActividadDeportivaRepetidaException"/>
 </operation>
 <operation name="listarSocios">
 <input wsam:Action="http://publicadores/ControladorPublish/listarSociosRequest" message="tns:listarSocios"/>
@@ -236,6 +273,11 @@
 <operation name="listarClases" parameterOrder="arg0 arg1">
 <input wsam:Action="http://publicadores/ControladorPublish/listarClasesRequest" message="tns:listarClases"/>
 <output wsam:Action="http://publicadores/ControladorPublish/listarClasesResponse" message="tns:listarClasesResponse"/>
+</operation>
+<operation name="registroADictadoClase" parameterOrder="arg0 arg1 arg2">
+<input wsam:Action="http://publicadores/ControladorPublish/registroADictadoClaseRequest" message="tns:registroADictadoClase"/>
+<output wsam:Action="http://publicadores/ControladorPublish/registroADictadoClaseResponse" message="tns:registroADictadoClaseResponse"/>
+<fault message="tns:RegistroAClaseRepetidoException" name="RegistroAClaseRepetidoException" wsam:Action="http://publicadores/ControladorPublish/registroADictadoClase/Fault/RegistroAClaseRepetidoException"/>
 </operation>
 <operation name="obtenerUsuario">
 <input wsam:Action="http://publicadores/ControladorPublish/obtenerUsuarioRequest" message="tns:obtenerUsuario"/>
@@ -377,6 +419,18 @@
 <soap:body use="literal" namespace="http://publicadores/"/>
 </output>
 </operation>
+<operation name="altaDictadoClase">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</input>
+<output>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</output>
+<fault name="DictadoRepetidoException">
+<soap:fault name="DictadoRepetidoException" use="literal"/>
+</fault>
+</operation>
 <operation name="listarActividadesDeportivas">
 <soap:operation soapAction=""/>
 <input>
@@ -394,6 +448,18 @@
 <output>
 <soap:body use="literal" namespace="http://publicadores/"/>
 </output>
+</operation>
+<operation name="altaActividadDeportiva">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</input>
+<output>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</output>
+<fault name="ActividadDeportivaRepetidaException">
+<soap:fault name="ActividadDeportivaRepetidaException" use="literal"/>
+</fault>
 </operation>
 <operation name="listarSocios">
 <soap:operation soapAction=""/>
@@ -430,6 +496,18 @@
 <output>
 <soap:body use="literal" namespace="http://publicadores/"/>
 </output>
+</operation>
+<operation name="registroADictadoClase">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</input>
+<output>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</output>
+<fault name="RegistroAClaseRepetidoException">
+<soap:fault name="RegistroAClaseRepetidoException" use="literal"/>
+</fault>
 </operation>
 <operation name="obtenerUsuario">
 <soap:operation soapAction=""/>

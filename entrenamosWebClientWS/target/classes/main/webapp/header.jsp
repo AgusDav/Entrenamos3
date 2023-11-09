@@ -55,6 +55,7 @@
 						<li><a id="ConsultaActDepor" class="dropdown-item" href="ConsultaActividadDeportiva.jsp">Actividad Deportiva</a></li>
 						<li><a id="ConsultaUser" class="dropdown-item" href="ConsultaUsuario.jsp">Usuario</a></li>
 						<li><a id="ConsultaDicClase" class="dropdown-item" href="ConsultaDictadoClase.jsp">Dictado de Clase</a></li>
+						<li><a id="Belligol" class="dropdown-item" href="Belligol.jsp">Bellingham</a></li>
 					</ul>
 					</li>
 
@@ -95,6 +96,7 @@
 			var ConsultaActDepor = document.getElementById("ConsultaActDepor");
 			var ConsultaUser = document.getElementById("ConsultaUser");
 			var ConsultaDicClase = document.getElementById("ConsultaDicClase");
+			var Belligol = document.getElementById("Belligol");
 			var AgregarRegADicClase = document.getElementById("RegADicClase");
 
 			AgregarActDepor.style.display = "block";		//No hay que implementarla para esta tarea. Aparecen en los dos
@@ -109,6 +111,7 @@
 				ConsultaActDepor.style.display = "block";
 				ConsultaUser.style.display = "block";
 				ConsultaDicClase.style.display = "block";
+				Belligol.style.display = "block";
 			} else if (userType === "S") {
 				// Mostrar elementos específicos para socios
 				AgregarRegADicClase.style.display = "block";
@@ -117,6 +120,7 @@
 				ConsultaActDepor.style.display = "block";
 				ConsultaUser.style.display = "block";
 				ConsultaDicClase.style.display = "none";
+				Belligol.style.display = "none";
 			}
 		}
 

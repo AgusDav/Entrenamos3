@@ -7,6 +7,9 @@
 
 package main.publicadores;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class DtClase  implements java.io.Serializable {
     private java.util.Calendar fecha;
 
@@ -32,6 +35,22 @@ public class DtClase  implements java.io.Serializable {
            this.horaInicio = horaInicio;
            this.nombre = nombre;
            this.url = url;
+    }
+
+    public DtClase(String nombre, Date fechaInicio, String hora, String url, Date fechaReg) {
+        super();
+        this.nombre = nombre;
+        Calendar calendarInicio = Calendar.getInstance();
+        calendarInicio.setTime(fechaInicio);
+        this.fecha = calendarInicio;
+        this.horaInicio = hora;
+        this.url = url;
+        // Convierte la fechaReg a Calendar
+        Calendar calendarReg = Calendar.getInstance();
+        calendarReg.setTime(fechaReg);
+        this.fechaReg = calendarReg;
+        this.horaInicio = hora;
+        this.url = url;
     }
 
 

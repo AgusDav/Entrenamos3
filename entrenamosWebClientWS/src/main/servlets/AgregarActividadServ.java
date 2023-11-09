@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-import datatypes.DtActividadDeportiva;
+import com.google.gson.Gson;
 import excepciones.ActividadDeportivaRepetidaException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -17,8 +17,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import excepciones.InstitucionDeportivaRepetidaException;
-import interfaces.Fabrica;
-import interfaces.IControlador;
+
+import main.publicadores.*;
 
 @WebServlet("/Entrenamos.uy/AgregarActividad")
 public class AgregarActividadServ extends HttpServlet {
@@ -29,7 +29,21 @@ public class AgregarActividadServ extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String[] datos;
+        String tipo = request.getParameter("tipo");
+        if ("institutos".equals(tipo)) {
+            Gson gson = new Gson();
+            try {
+                datos = listarInstitutos();
+                response.setContentType("application/json");
+                // Conviertes el array de cadenas a formato JSON
+                String respuestaJson = gson.toJson(datos);
+                // Escribe la respuesta JSON al flujo de salida
+                response.getWriter().write(respuestaJson);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,8 +67,6 @@ public class AgregarActividadServ extends HttpServlet {
             rd.forward(request, response);
         }
 
-        Fabrica fabrica = Fabrica.getInstancia();
-        IControlador icon = fabrica.getIControlador();
 
         try {
             fecAlta = sdf.parse(fecha);
@@ -84,8 +96,8 @@ public class AgregarActividadServ extends HttpServlet {
         dt = new DtActividadDeportiva(nombre,descripcion,duracionInt,costoFloat,fecAlta);
 
         try{
-            icon.altaActividadDeportiva(institucion,dt);
-        } catch (ActividadDeportivaRepetidaException e) {
+            altaActividadDeportiva(institucion,dt);
+        } catch (Exception e) {
             request.setAttribute("error", "La actividad deportiva ya existe");
             RequestDispatcher rd = request.getRequestDispatcher("/AgregarActividadDeportiva.jsp");
             rd.forward(request, response);
@@ -95,5 +107,15 @@ public class AgregarActividadServ extends HttpServlet {
         request.setAttribute("mensaje", "Se ha ingresado correctamente la actividad deportiva " + nombre + " en el sistema.");
         rd = request.getRequestDispatcher("/notificacion.jsp");
         rd.forward(request, response);
+    }
+    private String[] listarInstitutos() throws Exception {
+        ControladorPublishService cps = new ControladorPublishServiceLocator();
+        ControladorPublish port = cps.getControladorPublishPort();
+        return port.listarInstitutos();
+    }
+    private void altaActividadDeportiva(String institucion, DtActividadDeportiva dt)throws Exception {
+        ControladorPublishService cps = new ControladorPublishServiceLocator();
+        ControladorPublish port = cps.getControladorPublishPort();
+        port.altaActividadDeportiva(institucion, dt);
     }
 }

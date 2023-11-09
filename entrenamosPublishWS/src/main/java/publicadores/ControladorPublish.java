@@ -2,7 +2,10 @@ package publicadores;
 
 import configuraciones.WebServiceConfiguracion;
 import datatypes.*;
+import excepciones.ActividadDeportivaRepetidaException;
+import excepciones.DictadoRepetidoException;
 import excepciones.InstitucionDeportivaRepetidaException;
+import excepciones.RegistroAClaseRepetidoException;
 import interfaces.Fabrica;
 import interfaces.IControlador;
 import logica.ActividadDeportiva;
@@ -48,6 +51,18 @@ public class ControladorPublish {
     @WebMethod
     public void altaInstitucion(String nombre, String descripcion, String url) throws InstitucionDeportivaRepetidaException {
         icon.altaInstitucion(nombre,descripcion,url);
+    }
+    @WebMethod
+    public void altaActividadDeportiva(String nombreIns,DtActividadDeportiva data) throws ActividadDeportivaRepetidaException {
+        icon.altaActividadDeportiva(nombreIns,data);
+    }
+    @WebMethod
+    public void altaDictadoClase(DtClase clase, String nomIns, String nomAct, String profe) throws DictadoRepetidoException {
+        icon.altaDictadoClase(clase,nomIns,nomAct,profe);
+    }
+    @WebMethod
+    public void registroADictadoClase(String nick,String clase,Date fechaReg)throws RegistroAClaseRepetidoException {
+        icon.registroADictadoClase(nick,clase,fechaReg);
     }
     @WebMethod
     public boolean LogIn(String nick, String password){

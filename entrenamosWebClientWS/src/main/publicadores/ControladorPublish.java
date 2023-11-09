@@ -18,12 +18,15 @@ public interface ControladorPublish extends java.rmi.Remote {
     public java.lang.String[] listarInstitutos() throws java.rmi.RemoteException;
     public main.publicadores.DtInstitucionDeportiva obtenerInstitucion(java.lang.String arg0) throws java.rmi.RemoteException;
     public void modificarInstitucion(java.lang.String arg0, java.lang.String arg1, java.lang.String arg2) throws java.rmi.RemoteException;
+    public void altaDictadoClase(main.publicadores.DtClase arg0, java.lang.String arg1, java.lang.String arg2, java.lang.String arg3) throws java.rmi.RemoteException, main.publicadores.DictadoRepetidoException;
     public java.lang.String[] listarActividadesDeportivas(java.lang.String arg0) throws java.rmi.RemoteException;
     public java.lang.String[] listarProfesores(java.lang.String arg0) throws java.rmi.RemoteException;
+    public void altaActividadDeportiva(java.lang.String arg0, main.publicadores.DtActividadDeportiva arg1) throws java.rmi.RemoteException, main.publicadores.ActividadDeportivaRepetidaException;
     public java.lang.String[] listarSocios(java.lang.String arg0) throws java.rmi.RemoteException;
     public void modificarUsuario(java.lang.String arg0, java.lang.String arg1, java.lang.String arg2, java.util.Calendar arg3, java.lang.String arg4, java.lang.String arg5, java.lang.String arg6) throws java.rmi.RemoteException;
     public java.lang.String[] listarClases2() throws java.rmi.RemoteException;
     public java.lang.String[] listarClases(java.lang.String arg0, java.lang.String arg1) throws java.rmi.RemoteException;
+    public void registroADictadoClase(java.lang.String arg0, java.lang.String arg1, java.util.Calendar arg2) throws java.rmi.RemoteException, main.publicadores.RegistroAClaseRepetidoException;
     public main.publicadores.DtUsuario obtenerUsuario(java.lang.String arg0) throws java.rmi.RemoteException;
     public main.publicadores.Usuario obtenerUsuarioReal(java.lang.String arg0) throws java.rmi.RemoteException;
     public main.publicadores.DtClase obtenerClase(java.lang.String arg0) throws java.rmi.RemoteException;

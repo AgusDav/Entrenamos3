@@ -7,6 +7,9 @@
 
 package main.publicadores;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class DtActividadDeportiva  implements java.io.Serializable {
     private float costo;
 
@@ -32,6 +35,17 @@ public class DtActividadDeportiva  implements java.io.Serializable {
            this.duracion = duracion;
            this.fecReg = fecReg;
            this.nombre = nombre;
+    }
+
+    public DtActividadDeportiva(String nombre, String descripcion, int duracionInt, float costoFloat, Date fecAlta) {
+        super();
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.duracion = duracionInt;
+        this.costo  = costoFloat;
+        Calendar calendarInicio = Calendar.getInstance();
+        calendarInicio.setTime(fecAlta);
+        this.fecReg = calendarInicio;
     }
 
 
