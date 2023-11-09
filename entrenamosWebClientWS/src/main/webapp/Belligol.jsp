@@ -9,7 +9,7 @@
     <title>Consulta Usuario</title>
     <style>
         body {
-            background-image: url('https://wallpapercave.com/dwp1x/wp3006474.jpg');
+            background-image: url('https://cloudfront-eu-central-1.images.arcpublishing.com/prisaradio/45AV7TSTWNOSTOQYC473FC5IJY.jpg');
             background-size: cover;
             background-attachment: fixed;
             background-repeat: no-repeat;
