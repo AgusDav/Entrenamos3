@@ -128,7 +128,14 @@
                     descripcionInput.value = data.descripcion;
                     duracionInput.value = data.duracion;
                     costoInput.value = data.costo;
-                    fechaInput.value = data.fecReg;
+                    var dia = data.fecReg.dayOfMonth;
+                    var mes = data.fecReg.month;
+                    var anio = data.fecReg.year;
+                    var fechaCompleta = dia + '/' + mes + '/' + anio;
+
+                    console.log("Fecha Completa: " + fechaCompleta);
+                    fechaInput.value = fechaCompleta;
+                    console.log("Fecha" + fechaInput.value);
 
                     // Luego de obtener los datos de la actividad, obtener la lista de clases
                     return fetch('/Entrenamos.uy/ConsultaActividadDeportiva?tipo=clases&actividad=' + actividadSeleccionada);
