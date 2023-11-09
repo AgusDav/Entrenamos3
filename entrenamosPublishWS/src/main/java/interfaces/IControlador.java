@@ -33,6 +33,7 @@ public interface IControlador {
 	public String[] listarActividadesDeportivas(String nombre);
 	public String[] listarProfesores(String nombre);
 	public String[] listarSocios(String nombre);
+	public String[] obtenerSociosClase(String nombreClase);
 	public String[] listarUsuarios();
 	public DtUsuario obtenerUsuario(String nick);
 	public DtProfesor obtenerProfesor(String nick);

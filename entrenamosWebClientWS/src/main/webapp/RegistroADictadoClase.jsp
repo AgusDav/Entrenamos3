@@ -1,5 +1,4 @@
-<%@ page import="interfaces.IControlador" %>
-<%@ page import="interfaces.Fabrica" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 
@@ -19,21 +18,28 @@
         <div class="alert alert-danger" id="errorText"></div>
     </div>
     <div class="form-group">
-        <label for="inputInst">Institucion</label>
-        <select name="institucion" class="form-control" id="inputInst">
-            <option value="" selected disabled>Selecciona una institucion</option>
-            <%
-                fabrica = Fabrica.getInstancia();
-                icon = fabrica.getIControlador();
-                String[] institutos = icon.listarInstitutos();
-                for (String instituto : institutos) {
-            %>
-            <option value="<%= instituto %>"><%= instituto %></option>
-            <%
-                }
-            %>
-        </select>
-    </div>
+            <label for="inputInst">Institucion</label>
+            <select name="institucion" class="form-control" id="inputInst">
+                <option value="" selected disabled>Selecciona una institución</option>
+            </select>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                fetch('/Entrenamos.uy/AgregarDictadoClase?tipo=institutos')
+                    .then(response => response.json())
+                    .then(data => {
+                        var institutos = data;
+                        var select = document.getElementById('inputInst');
+                        institutos.forEach(function (instituto) {
+                            var option = document.createElement('option');
+                            option.value = instituto;
+                            option.text = instituto;
+                            select.appendChild(option);
+                        });
+                    });
+            });
+        </script>
 
     <!-- Aquí puedes mostrar las actividades deportivas correspondientes a la institución seleccionada -->
     <div class="form-group">
@@ -75,7 +81,7 @@
             var institucionSeleccionada = institucionSelect.value;
 
             // Realizar una solicitud al servidor con la institución seleccionada
-            fetch('/Entrenamos.uy/AgregarDictadoClase?institucion=' + institucionSeleccionada)
+            fetch('/Entrenamos.uy/AgregarDictadoClase?tipo=actividades&institucion=' + institucionSeleccionada)
                 .then(response => response.json())
                 .then(data => {
                     // Limpiar el select de actividades

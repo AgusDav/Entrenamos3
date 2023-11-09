@@ -414,6 +414,12 @@ public class Controlador implements IControlador{
 		Clase c = mC.buscarClase(nombreClase);
 		return c;
 	}
+	@Override
+	public String[] obtenerSociosClase(String nombreClase){
+		ManejadorClase mC = ManejadorClase.getInstancia();
+		Clase c = mC.buscarClase(nombreClase);
+		return c.obtenerSocios();
+	}
 	
 	@Override
 	public String obtenerInstitucionActividad(String nombreAct){

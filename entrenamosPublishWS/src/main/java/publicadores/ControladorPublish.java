@@ -65,6 +65,10 @@ public class ControladorPublish {
         icon.registroADictadoClase(nick,clase,fechaReg);
     }
     @WebMethod
+    public String[] obtenerSociosClase(String nombreClase){
+        return (icon.obtenerSociosClase(nombreClase));
+    }
+    @WebMethod
     public boolean LogIn(String nick, String password){
         return (icon.logIn(nick,password));
     }

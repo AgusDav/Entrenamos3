@@ -1,22 +1,21 @@
 package main.servlets;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 import com.google.gson.Gson;
-import datatypes.*;
-import excepciones.DictadoRepetidoException;
-import excepciones.UsuarioRepetidoException;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import main.publicadores.DtClase;
+import main.publicadores.ControladorPublish;
+import main.publicadores.ControladorPublishService;
+import main.publicadores.ControladorPublishServiceLocator;
 
-import interfaces.Fabrica;
-import interfaces.IControlador;
-import logica.Clase;
+import javax.xml.rpc.ServiceException;
+
 
 @WebServlet("/Entrenamos.uy/ConsultaDictadoClase")
 public class ConsultaDictadoClaseServ extends HttpServlet {
@@ -27,9 +26,6 @@ public class ConsultaDictadoClaseServ extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Aquí obtienes la instancia de la fábrica y del controlador
-        Fabrica fabrica = Fabrica.getInstancia();
-        IControlador icon = fabrica.getIControlador();
 
         // Obtienes el parámetro de la institución desde la solicitud
         String institucionSeleccionada = request.getParameter("institucion");
@@ -38,7 +34,12 @@ public class ConsultaDictadoClaseServ extends HttpServlet {
         if (institucionSeleccionada != null && !institucionSeleccionada.isEmpty()) {
             if ("inst".equals(tipo)) {
                 // Obtienes las actividades deportivas para la institución seleccionada
-                String[] actividades = icon.listarActividadesDeportivas(institucionSeleccionada);
+                String[] actividades = new String[0];
+                try {
+                    actividades = listarActividadesDeportivas(institucionSeleccionada);
+                } catch (ServiceException e) {
+                    throw new RuntimeException(e);
+                }
 
                 // Conviertes el array de cadenas a un formato JSON
                 Gson gson = new Gson();
@@ -53,7 +54,12 @@ public class ConsultaDictadoClaseServ extends HttpServlet {
             }
             else if ("act".equals(tipo)) {
                 String actividadSeleccionada = request.getParameter("actividad");
-                String[] clases = icon.listarClases(institucionSeleccionada, actividadSeleccionada);
+                String[] clases = new String[0];
+                try {
+                    clases = listarClases(institucionSeleccionada, actividadSeleccionada);
+                } catch (ServiceException e) {
+                    throw new RuntimeException(e);
+                }
 
                 // Conviertes el arreglo de clases a JSON utilizando Gson
                 Gson gson = new Gson();
@@ -69,7 +75,12 @@ public class ConsultaDictadoClaseServ extends HttpServlet {
         if ("dtclase".equals(tipo)) {
             // Obtienes el DtActividadDeportiva
             String claseSeleccionada = request.getParameter("clase");
-            DtClase dt = icon.obtenerClase(claseSeleccionada);
+            DtClase dt = null;
+            try {
+                dt = obtenerClase(claseSeleccionada);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
 
             // Conviertes el objeto DtActividadDeportiva a JSON
             Gson gson = new Gson();
@@ -84,7 +95,12 @@ public class ConsultaDictadoClaseServ extends HttpServlet {
         else if ("dtsocio".equals(tipo)) {
             // Obtienes el DtActividadDeportiva
             String claseSeleccionada = request.getParameter("clase");
-            String[] dt = icon.obtenerClaseR(claseSeleccionada).obtenerSocios();
+            String[] dt = new String[0];
+            try {
+                dt = obtenerSociosClase(claseSeleccionada);//CORREGIR ACA
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
 
             // Conviertes el objeto DtActividadDeportiva a JSON
             Gson gson = new Gson();
@@ -100,5 +116,25 @@ public class ConsultaDictadoClaseServ extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
+    }
+    public String[] listarActividadesDeportivas(String institucionSeleccionada) throws RemoteException, ServiceException {
+        ControladorPublishService cps = new ControladorPublishServiceLocator();
+        ControladorPublish port = cps.getControladorPublishPort();
+        return port.listarActividadesDeportivas(institucionSeleccionada);
+    }
+    public String[] listarClases(String ins, String actividad) throws RemoteException, ServiceException {
+        ControladorPublishService cps = new ControladorPublishServiceLocator();
+        ControladorPublish port = cps.getControladorPublishPort();
+        return port.listarClases(ins, actividad);
+    }
+    private DtClase obtenerClase(String actividad) throws Exception {
+        ControladorPublishService cps = new ControladorPublishServiceLocator();
+        ControladorPublish port = cps.getControladorPublishPort();
+        return port.obtenerClase(actividad);
+    }
+    private String[] obtenerSociosClase(String actividad) throws Exception {
+        ControladorPublishService cps = new ControladorPublishServiceLocator();
+        ControladorPublish port = cps.getControladorPublishPort();
+        return port.obtenerSociosClase(actividad);
     }
 }
