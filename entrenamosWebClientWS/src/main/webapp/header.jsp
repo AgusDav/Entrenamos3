@@ -58,7 +58,7 @@
 						<li><a id="ConsultaActDepor" class="dropdown-item" href="ConsultaActividadDeportiva.jsp">Actividad Deportiva</a></li>
 						<li><a id="ConsultaUser" class="dropdown-item" href="ConsultaUsuario.jsp">Usuario</a></li>
 						<li><a id="ConsultaDicClase" class="dropdown-item" href="ConsultaDictadoClase.jsp">Dictado de Clase</a></li>
-						<li><a id="Belligol" class="dropdown-item" href="Belligol.jsp">Bellingham</a></li>
+						<li><a id="Easteregg" class="dropdown-item" href="easteregg.jsp">Easteregg</a></li>
 					</ul>
 					</li>
 

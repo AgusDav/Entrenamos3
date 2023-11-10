@@ -1,6 +1,4 @@
-<%@ page import="interfaces.IControlador" %>
-<%@ page import="interfaces.Fabrica" %>
-<%@ page import="datatypes.DtUsuario" %>
+<%@ page import="main.publicadores.DtUsuario" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 
@@ -86,7 +84,10 @@
 
         <script>
           <%String nick = (String) session.getAttribute("username");
-          DtUsuario user = icon.obtenerUsuario(nick);%>
+          DtUsuario user = null;try {
+user = obtenerUsuario(nick);} catch (ServiceException e) {
+    throw new RuntimeException(e);
+}%>
             var user = {
             nombre: "<%= user.getNombre() %>",
             apellido: "<%= user.getApellido() %>",
@@ -111,4 +112,12 @@
       </form>
 </body>
 </html>
+
+<%!
+  private DtUsuario obtenerUsuario(String nick) throws RemoteException, ServiceException {
+    ControladorPublishService cps = new ControladorPublishServiceLocator();
+    ControladorPublish port = cps.getControladorPublishPort();
+    return port.obtenerUsuario(nick);
+  }
+%>
 

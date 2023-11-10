@@ -75,7 +75,7 @@
     <div id="myVideoText">Apreta no seas puto</div>
     <button id="playButton"></button>
     <video controls autoplay id="myVideo">
-        <source src="bellingham.mp4" type="video/mp4">
+        <source src="easteregg.mp4" type="video/mp4">
         Tu navegador no soporta la reproducción de videos.
     </video>
 </div>
