@@ -6,8 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.google.gson.Gson;
-import excepciones.DictadoRepetidoException;
-import excepciones.UsuarioRepetidoException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

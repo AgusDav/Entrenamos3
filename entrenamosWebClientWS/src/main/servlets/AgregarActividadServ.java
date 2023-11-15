@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.Objects;
 
 import com.google.gson.Gson;
-import excepciones.ActividadDeportivaRepetidaException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,7 +15,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import excepciones.InstitucionDeportivaRepetidaException;
 
 import main.publicadores.*;
 

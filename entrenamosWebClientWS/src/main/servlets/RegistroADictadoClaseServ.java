@@ -1,7 +1,6 @@
 package main.servlets;
 
 import com.google.gson.Gson;
-import excepciones.RegistroAClaseRepetidoException;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

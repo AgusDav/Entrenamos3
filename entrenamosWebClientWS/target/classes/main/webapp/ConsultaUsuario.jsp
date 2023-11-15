@@ -8,16 +8,18 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width", initial-scale=1,shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%@include file="header.jsp" %>
     <title>Consulta Usuario</title>
     <style>
         body {
-            background-image: url('https://wallpapercave.com/dwp1x/wp3006474.jpg');
-            background-size: cover; /* Cambiado de 'contain' a 'cover' para rellenar la pantalla */
+            background-image: url('https://previews.123rf.com/images/theartofphoto/theartofphoto1508/theartofphoto150800200/49636373-hunky-culturista-negro-musculoso-trabajo-en-el-gimnasio-hacer-ejercicio-de-nuevo-en-la-m%C3%A1quina.jpg');
+            background-size: cover;
             background-attachment: fixed;
             background-repeat: no-repeat;
-            background-position: center top; /* Alineado en la parte superior */
+            background-position: center center;
+            height: 100vh;
+            margin: 0;
         }
         body {
             background-color: #363D4B;

@@ -93,19 +93,34 @@ user = obtenerUsuario(nick);} catch (ServiceException e) {
             apellido: "<%= user.getApellido() %>",
             email: "<%= user.getEmail() %>",
             fecNac: "<%= user.getFecNac() %>"
-          };
+        </script>
 
-            var nickInput = document.getElementById("nickname");
-            var nombreInput = document.getElementById("nombre");
-            var apellidoInput = document.getElementById("apellido");
-            var emailInput = document.getElementById("email");
-            var fechaInput = document.getElementById("fecNac");
+        <script>
+          <%String nick2 = (String) session.getAttribute("username");%>
+          var actividades = document.getElementById("Actividades");
+          var userType;
+          // Define la función para hacer una solicitud utilizando fetch
+          fetch('/Entrenamos.uy/ConsultaUsuario?tipo=usuario&user=' + "<%= nick %>")
+                    .then(function(response) {
+                      return response.json(); // Parsea la respuesta JSON
+                    })
+                    .then(function(data) {
+                      var nickInput = document.getElementById("nickname");
+                      var nombreInput = document.getElementById("nombre");
+                      var apellidoInput = document.getElementById("apellido");
+                      var emailInput = document.getElementById("email");
+                      var fechaInput = document.getElementById("fecNac");
 
-            nickInput.value = "<%= nick %>";
-            nombreInput.value = user.nombre;
-            apellidoInput.value = user.apellido;
-            emailInput.value = user.email;
-            fechaInput.value = user.fecNac;
+                      nickInput.value = data[0];
+                      emailInput.value = data[1];
+                      nombreInput.value = data[2];
+                      apellidoInput.value = data[3];
+                      fechaInput.value = data[4];
+                    })
+                    .catch(function(error) {
+                      console.error('Error:', error);
+                    });
+          // Llama a la función para obtener el tipo de usuario
         </script>
 
         <%@include file="footer.jsp" %>
