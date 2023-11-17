@@ -127,10 +127,10 @@ public class ConsultaDictadoClaseServ extends HttpServlet {
         ControladorPublish port = cps.getControladorPublishPort();
         return port.listarClases(ins, actividad);
     }
-    private DtClase obtenerClase(String actividad) throws Exception {
+    private DtClase obtenerClase(String clase) throws Exception {
         ControladorPublishService cps = new ControladorPublishServiceLocator();
         ControladorPublish port = cps.getControladorPublishPort();
-        return port.obtenerClase(actividad);
+        return port.obtenerClase(clase);
     }
     private String[] obtenerSociosClase(String actividad) throws Exception {
         ControladorPublishService cps = new ControladorPublishServiceLocator();
