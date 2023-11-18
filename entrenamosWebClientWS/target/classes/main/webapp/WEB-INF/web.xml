@@ -17,6 +17,16 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>RankingActividadServlet</servlet-name>
+    <servlet-class>main.servlets.RankingActividadServ</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RankingActividadServlet</servlet-name>
+    <url-pattern>/RankingActividad</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>RankingClaseServlet</servlet-name>
     <servlet-class>main.servlets.RankingClaseServ</servlet-class>
   </servlet>

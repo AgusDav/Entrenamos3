@@ -59,6 +59,7 @@
 						<li><a id="ConsultaUser" class="dropdown-item" href="ConsultaUsuario.jsp">Usuario</a></li>
 						<li><a id="ConsultaDicClase" class="dropdown-item" href="ConsultaDictadoClase.jsp">Dictado de Clase</a></li>
 						<li><a id="RankingClase" class="dropdown-item" href="RankingClase.jsp">Ranking de Clases</a></li>
+						<li><a id="RankingActividad" class="dropdown-item" href="RankingActividad.jsp">Ranking de Actividades</a></li>
 						<li><a id="Easteregg" class="dropdown-item" href="easteregg.jsp">Easteregg</a></li>
 					</ul>
 					</li>
@@ -104,6 +105,7 @@
 			var Belligol = document.getElementById("Belligol");
 			var AgregarRegADicClase = document.getElementById("RegADicClase");
 			var RankingClase = document.getElementById("RankingClase");
+			var RankingActividad = document.getElementById("RankingActividad");
 
 			AgregarActDepor.style.display = "block";		//No hay que implementarla para esta tarea. Aparecen en los dos
 			AgregarInstitucion.style.display = "block";		//No hay que implementarla para esta tarea. Aparecen en los dos
@@ -118,10 +120,12 @@
 				ConsultaUser.style.display = "block";
 				ConsultaDicClase.style.display = "block";
 				RankingClase.style.display = "block";
+				RankingActividad.style.display = "block";
 				Belligol.style.display = "block";
 			} else if (userType === "S") {
 				// Mostrar elementos específicos para socios
 				RankingClase.style.display = "none";
+				RankingActividad.style.display = "none";
 				AgregarRegADicClase.style.display = "block";
 				AgregarDicClase.style.display = "none";
 				ModifUser.style.display = "block";
