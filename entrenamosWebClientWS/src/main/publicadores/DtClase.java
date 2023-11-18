@@ -21,6 +21,8 @@ public class DtClase  implements java.io.Serializable {
 
     private java.lang.String url;
 
+    public DtClase(){};
+
     public DtClase(String nombre, Date fechaInicio, String hora, String url, Date fechaReg) {
         super();
         this.nombre = nombre;

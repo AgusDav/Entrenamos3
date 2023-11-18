@@ -2,6 +2,8 @@ package main.servlets;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
@@ -76,21 +78,26 @@ public class ConsultaDictadoClaseServ extends HttpServlet {
             // Obtienes el DtActividadDeportiva
             String claseSeleccionada = request.getParameter("clase");
             DtClase dt = null;
+            String[] respuestaArray = null;
             try {
                 dt = obtenerClase(claseSeleccionada);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+            Calendar calendar = dt.getFecha(); // Convierte el objeto Calendar a una cadena con un formato específico
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // Define el formato de fecha deseado
+            String fechaComoCadena = sdf.format(calendar.getTime()); // Convierte el Calendar a Date y luego a cadena
+            respuestaArray = new String[]{dt.getNombre(),dt.getUrl(),fechaComoCadena,dt.getHoraInicio()};
 
             // Conviertes el objeto DtActividadDeportiva a JSON
             Gson gson = new Gson();
-            String actividadJson = gson.toJson(dt);
-
-            // Estableces el tipo de contenido de la respuesta como JSON
             response.setContentType("application/json");
 
+            // Conviertes el array de cadenas a formato JSON
+            String respuestaJson = gson.toJson(respuestaArray);
+
             // Escribe la respuesta JSON al flujo de salida
-            response.getWriter().write(actividadJson);
+            response.getWriter().write(respuestaJson);
         }
         else if ("dtsocio".equals(tipo)) {
             // Obtienes el DtActividadDeportiva

@@ -80,12 +80,12 @@
                     var cell1 = newRow.insertCell(0);
                     var cell2 = newRow.insertCell(1);
                     var cell3 = newRow.insertCell(2);
-                    //var cell4 = newRow.insertCell(3);
+                    var cell4 = newRow.insertCell(3);
 
-                    cell1.innerHTML = data.nombre;
-                    cell2.innerHTML = data.url;
-                    cell3.innerHTML = data.fecha;
-                    //cell4.innerHTML = data.horaInicio;
+                    cell1.innerHTML = data[0];
+                    cell2.innerHTML = data[1];
+                    cell3.innerHTML = data[2];
+                    cell4.innerHTML = data[3];
 
                     tablaContainer.appendChild(table);
                 });
