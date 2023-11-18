@@ -136,6 +136,10 @@ public class Clase implements Serializable {
         registros.add(reg);
     }
 
+    public void eliminarRegistro(Registro reg){
+        registros.remove(reg);
+    }
+
     public DtClase getDtClase() {
     	return new DtClase(this.nombre, this.fecha, this.hora, this.url, this.fechaReg);
     }

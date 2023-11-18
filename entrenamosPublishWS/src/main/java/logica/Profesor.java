@@ -81,6 +81,10 @@ public class Profesor extends Usuario implements Serializable{
 	public void añadirRegistro(Registro reg) {
 		//Ta pelao
 	}
+
+    public void eliminarRegistro(Registro reg){
+        //ala
+    }
 	
 	public String[] obtenerClases(){
 		String[] clase = new String[clases.size()];

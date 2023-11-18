@@ -27,8 +27,7 @@ public interface IControlador {
 	public void agregarSocio(DtSocio socio) throws UsuarioRepetidoException;
 	public void altaDictadoClase(DtClase clase, String nomIns, String nomAct, String profe) throws DictadoRepetidoException;
 	public void registroADictadoClase(String nick,String clase,Date fechaReg) throws RegistroAClaseRepetidoException;
-
-	
+	public void eliminarRegistro(String nick,String clase)throws RegistroAClaseRepetidoException;
 	public String[] listarInstitutos();
 	public String[] listarActividadesDeportivas(String nombre);
 	public String[] listarProfesores(String nombre);

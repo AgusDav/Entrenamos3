@@ -48,6 +48,8 @@ public abstract class Usuario implements Serializable {
     
     public abstract DtUsuario getDtUsuario();
     public abstract void añadirRegistro(Registro reg);
+
+    public abstract void eliminarRegistro(Registro reg);
     public abstract void añadirClase(Clase reg);
     
     public abstract String[] obtenerClases();

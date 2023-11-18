@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 
+import excepciones.RegistroAClaseRepetidoException;
 import interfaces.Fabrica;
 import interfaces.IControlador;
 
@@ -26,6 +27,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import java.awt.Insets;
+
+import logica.Controlador;
 import persistencia.Conexion;
 import publicadores.ControladorPublish;
 
@@ -61,6 +64,7 @@ public class Principal {
     private JDialog rankingActividadDeportivaDialog;
     private LogIn LogInInternalFrame;
     private JDialog LogInDialog;
+
     
 
 
@@ -536,8 +540,37 @@ public class Principal {
             	btnAltaActividadDeportiva.setBackground(new Color(54, 61, 75)); // Original color when not hovering
             }
         });
-        btnAltaActividadDeportiva.setBounds(83, 355, 273, 53);
+        btnAltaActividadDeportiva.setBounds(75, 355, 273, 53);
         panelPrincipal.add(btnAltaActividadDeportiva);
+
+        JButton btnEliminarReg = new JButton("Eliminar reg");
+        btnEliminarReg.setIcon(iconoMas);
+        btnEliminarReg.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Fabrica fabrica = Fabrica.getInstancia();
+                IControlador icon = fabrica.getIControlador();
+                try {
+                    icon.eliminarRegistro("Joaco", "BD2");
+                } catch (RegistroAClaseRepetidoException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        btnEliminarReg.setForeground(Color.WHITE);
+        btnEliminarReg.setBackground(new Color(54, 61, 75));
+        btnEliminarReg.setBorder(new LineBorder(new Color(33, 37, 43), 3, true));
+        btnEliminarReg.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                btnEliminarReg.setBackground(new Color(69, 78, 95)); // Lighter blue when hovering
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                btnEliminarReg.setBackground(new Color(54, 61, 75)); // Original color when not hovering
+            }
+        });
+        btnEliminarReg.setBounds(83, 355, 273, 53);
+        panelPrincipal.add(btnEliminarReg);
         
         // Boton alta dictado clase
         JButton btnAltaDictadoDeClase = new JButton("Alta Dictado De Clase");

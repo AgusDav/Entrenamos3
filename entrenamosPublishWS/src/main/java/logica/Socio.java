@@ -48,6 +48,10 @@ public class Socio extends Usuario implements Serializable{
 	public void añadirRegistro(Registro reg){
         registros.add(reg);
     }
+
+	public void eliminarRegistro(Registro reg){
+		registros.remove(reg);
+	}
 	
 	@Override
 	public void añadirClase(Clase reg) {

@@ -399,6 +399,33 @@ public class Controlador implements IControlador{
 			em.getTransaction().commit();
 		}
 	}
+
+	public void eliminarRegistro(String nick,String clase)throws RegistroAClaseRepetidoException{
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario us = mU.buscarUsuario(nick);
+		ManejadorClase mC = ManejadorClase.getInstancia();
+		Clase clas = mC.buscarClase(clase);
+		if(!mU.SocioEnClase(nick, clase)){
+			throw new RegistroAClaseRepetidoException("El registro del socio " + nick + " no existe");
+		}
+		else{
+			Conexion conexion = Conexion.getInstancia();
+			EntityManager em = conexion.getEntityManager();
+			Query query = em.createQuery("select r from Registro r where socio.nickname = :nick").setParameter("nick", nick);
+			List<Registro> listReg = query.getResultList();
+			Registro reg = null;
+			for(Registro aux:listReg){
+				if(aux.getClase().getNombre().equals(clase)){
+					reg = aux;
+				}
+			}
+			clas.eliminarRegistro(reg);
+			us.eliminarRegistro(reg);
+			em.getTransaction().begin();
+			em.persist(clas);
+			em.getTransaction().commit();
+		}
+	}
 	
 	@Override
 	public DtClase obtenerClase(String nombreClase){
