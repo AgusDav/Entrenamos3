@@ -7,9 +7,6 @@
 
 package main.publicadores;
 
-import java.util.Calendar;
-import java.util.Date;
-
 public abstract class DtUsuario  implements java.io.Serializable {
     private java.lang.String apellido;
 
@@ -39,18 +36,6 @@ public abstract class DtUsuario  implements java.io.Serializable {
            this.nickname = nickname;
            this.nombre = nombre;
            this.password = password;
-    }
-
-    public DtUsuario(String nick,String nombre, String email, Date fecNac, String apellido, String password) {
-        super();
-        this.nombre = nombre;
-        this.nickname = nick;
-        this.email = email;
-        this.password  = password;
-        this.apellido = apellido;
-        Calendar calendarInicio = Calendar.getInstance();
-        calendarInicio.setTime(fecNac);
-        this.fecNac = calendarInicio;
     }
 
 

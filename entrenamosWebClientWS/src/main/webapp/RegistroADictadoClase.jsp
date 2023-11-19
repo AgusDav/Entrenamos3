@@ -22,24 +22,24 @@
             <select name="institucion" class="form-control" id="inputInst">
                 <option value="" selected disabled>Selecciona una institución</option>
             </select>
-        </div>
+    </div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                fetch('/Entrenamos.uy/AgregarDictadoClase?tipo=institutos')
-                    .then(response => response.json())
-                    .then(data => {
-                        var institutos = data;
-                        var select = document.getElementById('inputInst');
-                        institutos.forEach(function (instituto) {
-                            var option = document.createElement('option');
-                            option.value = instituto;
-                            option.text = instituto;
-                            select.appendChild(option);
-                        });
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('/Entrenamos.uy/AgregarDictadoClase?tipo=institutos')
+                .then(response => response.json())
+                .then(data => {
+                    var institutos = data;
+                    var select = document.getElementById('inputInst');
+                    institutos.forEach(function (instituto) {
+                        var option = document.createElement('option');
+                        option.value = instituto;
+                        option.text = instituto;
+                        select.appendChild(option);
                     });
-            });
-        </script>
+                });
+        });
+    </script>
 
     <!-- Aquí puedes mostrar las actividades deportivas correspondientes a la institución seleccionada -->
     <div class="form-group">
@@ -148,8 +148,6 @@
             }
         });
     </script>
-
-
 
 </form>
 

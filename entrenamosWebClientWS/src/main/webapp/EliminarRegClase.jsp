@@ -1,51 +1,26 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width", initial-scale=1,shrink-to-fit=no">
     <%@include file="header.jsp" %>
-    <title>Consulta Dictado de Clase</title>
-    <style>
-
-        th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: left;
-        }
-
-    </style>
+    <title>Eliminar registro a clase</title>
 </head>
 <body>
-<form action="/Entrenamos.uy/ConsultaDictadoClase" method="post">
+<form action="/Entrenamos.uy/EliminarRegClase" method="post">
+    <div id="errorContainer" style="display:none;">
+        <div class="alert alert-danger" id="errorText"></div>
+    </div>
+
     <div class="form-group">
-            <label for="inputInst">Institucion</label>
-            <select name="institucion" class="form-control" id="inputInst">
-                <option value="" selected disabled>Selecciona una institución</option>
-            </select>
-        </div>
+        <label for="inputInst">Institucion</label>
+        <select name="institucion" class="form-control" id="inputInst">
+            <option value="" selected disabled>Selecciona una institución</option>
+        </select>
+    </div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                fetch('/Entrenamos.uy/AgregarDictadoClase?tipo=institutos')
-                    .then(response => response.json())
-                    .then(data => {
-                        var institutos = data;
-                        var select = document.getElementById('inputInst');
-                        institutos.forEach(function (instituto) {
-                            var option = document.createElement('option');
-                            option.value = instituto;
-                            option.text = instituto;
-                            select.appendChild(option);
-                        });
-                    });
-            });
-        </script>
-
-    <!-- Aquí puedes mostrar las actividades deportivas correspondientes a la institución seleccionada -->
     <div class="form-group">
         <label for="inputAct">Actividad deportiva</label>
         <select name="actividad_depor" class="form-control" id="inputAct">
@@ -65,38 +40,48 @@
     </div>
 
     <div class="form-group">
-        <label for="inputClase">Clase</label>
+        <label for="inputAct">Clase</label>
         <select name="clase" class="form-control" id="inputClase">
-            <option value="" selected disabled>Selecciona una clase</option>
-            <%
-                // Obtienes las clases del atributo de solicitud
-                String[] clases = (String[]) request.getAttribute("clases");
-                if (clases != null) {
-                    for (String clase : clases) {
-            %>
-            <option value="<%= clase %>"><%= clase %></option>
-            <%
-                    }
-                }
-            %>
+            <option value="" selected disabled>Selecciona una Clase</option>
+            <!-- Aquí se llenarán las opciones de clases en base a la selección -->
         </select>
     </div>
-
 
     <div id="tablaClasesContainer"></div>
     <div id="tablaSociosContainer"></div>
 
+    <div class="mt-3"></div>
 
-    <script>
+    <button type="submit" class="btn btn-primary">Eliminar registro</button>
+
+    <!--SECCION DE SCRIPTS-->
+
+    <script> // Script para desplegar instituciones
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('/Entrenamos.uy/AgregarDictadoClase?tipo=institutos')
+                .then(response => response.json())
+                .then(data => {
+                    var institutos = data;
+                    var select = document.getElementById('inputInst');
+                    institutos.forEach(function (instituto) {
+                        var option = document.createElement('option');
+                        option.value = instituto;
+                        option.text = instituto;
+                        select.appendChild(option);
+                    });
+                });
+        });
+    </script>
+
+    <script> //Script para desplegar actividades deportivas
         var institucionSelect = document.getElementById("inputInst");
         var actividadSelect = document.getElementById("inputAct");
-        var claseSelect = document.getElementById("inputClase");
 
         institucionSelect.addEventListener("change", function () {
             var institucionSeleccionada = institucionSelect.value;
 
             // Realizar una solicitud al servidor con la institución seleccionada
-            fetch('/Entrenamos.uy/ConsultaDictadoClase?tipo=inst&institucion=' + institucionSeleccionada)
+            fetch('/Entrenamos.uy/AgregarDictadoClase?tipo=actividades&institucion=' + institucionSeleccionada)
                 .then(response => response.json())
                 .then(data => {
                     // Limpiar el select de actividades
@@ -109,36 +94,37 @@
                         option.value = actividad;
                         actividadSelect.appendChild(option);
                     });
-
-                    // Disparar el evento "change" en actividadSelect para activar la siguiente actualización
-                    var event = new Event("change");
-                    actividadSelect.dispatchEvent(event);
+                    actividadSelect.value = data[0];
+                    actualizarClases();
+                    console.log("Función actualizarTablaClases ejecutada");
                 });
-        });
-        actividadSelect.addEventListener("change", function () {
-            var institucionSeleccionada = institucionSelect.value;
-            var actividadSeleccionada = actividadSelect.value;
 
-            // Realizar una solicitud al servidor con la institución y actividad seleccionadas
-            fetch('/Entrenamos.uy/ConsultaDictadoClase?tipo=act&institucion=' + institucionSeleccionada + '&actividad=' + actividadSeleccionada)
+            // Llamar a la función para actualizar las clases después de cargar las actividades
+        });
+    </script>
+
+    <script> //Script para desplegar las clases
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('/Entrenamos.uy/RankingClase?tipo=clases')
                 .then(response => response.json())
                 .then(data => {
-                    // Limpiar el select de clases
-                    claseSelect.innerHTML = '';
-
-                    // Agregar las opciones de clase al select
-                    data.forEach(clase => {
-                        var option = document.createElement("option");
-                        option.text = clase;
+                    var clases = data;
+                    var select = document.getElementById('inputClase');
+                    clases.forEach(function (clase) {
+                        var option = document.createElement('option');
                         option.value = clase;
-                        claseSelect.appendChild(option);
+                        option.text = clase;
+                        select.appendChild(option);
                     });
-
-                    // Disparar el evento "change" en claseSelect para activar la siguiente actualización
-                    var event = new Event("change");
-                    claseSelect.dispatchEvent(event);
                 });
         });
+        var event = new Event("change");
+        claseSelect.dispatchEvent(event);
+    </script>
+
+    <script> //Script para desplegar y generar las tablas
+        var claseSelect = document.getElementById("inputClase");
+
         function actualizarTablaClases(claseSeleccionada) {
             // Limpiar el contenedor de la tabla
             var tablaContainer = document.getElementById("tablaClasesContainer");
@@ -220,31 +206,56 @@
             actualizarTablaClases(claseSeleccionada);
         });
     </script>
-    <script>
-        // Analiza los parámetros de la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const instituciones = urlParams.get('institucion');
-        const actividades = urlParams.get('actividad');
-        const clases = urlParams.get('clase');
-        if (actividades) {
-            institucionSelect.value = instituciones;
-            actividadSelect.value = actividades;
-            claseSelect.value = clases;
-            // Crear un nuevo elemento para la lista de actividades y establecer el valor
-            const nuevaActividad = document.createElement("option");
-            nuevaActividad.value = actividades;
-            nuevaActividad.text = actividades;
-            actividadSelect.appendChild(nuevaActividad);
-            // Crear un nuevo elemento para la lista de clases y establecer el valor
-            const nuevaClase = document.createElement("option");
-            nuevaClase.value = clases;
-            nuevaClase.text = clases;
-            claseSelect.appendChild(nuevaClase);
-            var claseSeleccionada2 = claseSelect.value;
-            actualizarTablaClases(claseSeleccionada2);
+
+    <script> //Script para actualizar las clases cuando se cambia de institucion y/o actividad
+        var elect = document.getElementById("inputAct");
+        var clasesContainer = document.getElementById("inputClase");
+        var claseSeleccionada = claseSelect.value;
+
+        // Función para actualizar las clases
+        function actualizarClases() {institucionSelect = document.getElementById("inputInst");
+            var actividadS
+            var institucionSeleccionada = institucionSelect.value;
+            var actividadSeleccionada = actividadSelect.value;
+
+            // Realizar una solicitud al servidor con la institución y actividad seleccionadas
+            fetch('/Entrenamos.uy/RegistroADictadoClase?institucion=' + institucionSeleccionada + '&actividad_depor=' + actividadSeleccionada)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    // Limpiar el select de clases
+                    clasesContainer.innerHTML = '';
+
+                    // Agregar las clases al select
+                    data.forEach(clase => {
+                        var option = document.createElement("option");
+                        option.text = clase;
+                        option.value = clase;
+                        clasesContainer.appendChild(option);
+                    });
+                    claseSelect.value = data[0];
+                });
         }
+
+        // Event listener para cuando cambia la institución o la actividad
+        institucionSelect.addEventListener("change", actualizarClases);
+        actividadSelect.addEventListener("change", actualizarClases);
+        actualizarTablaClases(claseSeleccionada);
+    </script>
+
+    <script> //Despliega mensaje de error
+        document.addEventListener("DOMContentLoaded", function () {
+            var error = "<%= request.getAttribute("error") %>";
+            if (error && error !== "null") {
+                var errorContainer = document.getElementById("errorContainer");
+                var errorText = document.getElementById("errorText");
+                errorText.innerText = error;
+                errorContainer.style.display = "block";
+            }
+        });
     </script>
 </form>
+
 <%@include file="footer.jsp" %>
 </body>
 </html>

@@ -47,6 +47,7 @@
 						</button>
 						<ul class="dropdown-menu dropdown-menu-dark">
 							<li><a id="ModifUser" class="dropdown-item" href="ModificarUsuario.jsp">Usuario (opcional)</a></li>
+							<li><a id="ElimRegClase" class="dropdown-item" href="EliminarRegClase.jsp">Eliminar registro a clase (opcional)</a></li>
 						</ul>
 					</li>
 
@@ -102,10 +103,11 @@
 			var ConsultaActDepor = document.getElementById("ConsultaActDepor");
 			var ConsultaUser = document.getElementById("ConsultaUser");
 			var ConsultaDicClase = document.getElementById("ConsultaDicClase");
-			var Belligol = document.getElementById("Belligol");
+			var Belligol = document.getElementById("Easteregg");
 			var AgregarRegADicClase = document.getElementById("RegADicClase");
 			var RankingClase = document.getElementById("RankingClase");
 			var RankingActividad = document.getElementById("RankingActividad");
+			var ElimRegclase = document.getElementById("ElimRegClase");
 
 			AgregarActDepor.style.display = "block";		//No hay que implementarla para esta tarea. Aparecen en los dos
 			AgregarInstitucion.style.display = "block";		//No hay que implementarla para esta tarea. Aparecen en los dos
@@ -122,6 +124,7 @@
 				RankingClase.style.display = "block";
 				RankingActividad.style.display = "block";
 				Belligol.style.display = "block";
+				ElimRegclase.style.display = "none";
 			} else if (userType === "S") {
 				// Mostrar elementos específicos para socios
 				RankingClase.style.display = "none";
@@ -133,6 +136,7 @@
 				ConsultaUser.style.display = "block";
 				ConsultaDicClase.style.display = "none";
 				Belligol.style.display = "none";
+				ElimRegclase.style.display = "block";
 			}
 		}
 

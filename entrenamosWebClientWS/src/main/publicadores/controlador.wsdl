@@ -43,6 +43,14 @@
 <message name="clasesProfeResponse">
 <part xmlns:ns3="http://jaxb.dev.java.net/array" name="return" type="ns3:stringArray"/>
 </message>
+<message name="eliminarRegistro">
+<part name="arg0" type="xsd:string"/>
+<part name="arg1" type="xsd:string"/>
+</message>
+<message name="eliminarRegistroResponse"/>
+<message name="RegistroAClaseRepetidoException">
+<part name="fault" element="tns:RegistroAClaseRepetidoException"/>
+</message>
 <message name="LogIn">
 <part name="arg0" type="xsd:string"/>
 <part name="arg1" type="xsd:string"/>
@@ -138,9 +146,6 @@
 <part name="arg2" type="xsd:dateTime"/>
 </message>
 <message name="registroADictadoClaseResponse"/>
-<message name="RegistroAClaseRepetidoException">
-<part name="fault" element="tns:RegistroAClaseRepetidoException"/>
-</message>
 <message name="obtenerUsuario">
 <part name="arg0" type="xsd:string"/>
 </message>
@@ -228,6 +233,11 @@
 <operation name="clasesProfe">
 <input wsam:Action="http://publicadores/ControladorPublish/clasesProfeRequest" message="tns:clasesProfe"/>
 <output wsam:Action="http://publicadores/ControladorPublish/clasesProfeResponse" message="tns:clasesProfeResponse"/>
+</operation>
+<operation name="eliminarRegistro" parameterOrder="arg0 arg1">
+<input wsam:Action="http://publicadores/ControladorPublish/eliminarRegistroRequest" message="tns:eliminarRegistro"/>
+<output wsam:Action="http://publicadores/ControladorPublish/eliminarRegistroResponse" message="tns:eliminarRegistroResponse"/>
+<fault message="tns:RegistroAClaseRepetidoException" name="RegistroAClaseRepetidoException" wsam:Action="http://publicadores/ControladorPublish/eliminarRegistro/Fault/RegistroAClaseRepetidoException"/>
 </operation>
 <operation name="LogIn" parameterOrder="arg0 arg1">
 <input wsam:Action="http://publicadores/ControladorPublish/LogInRequest" message="tns:LogIn"/>
@@ -389,6 +399,18 @@
 <output>
 <soap:body use="literal" namespace="http://publicadores/"/>
 </output>
+</operation>
+<operation name="eliminarRegistro">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</input>
+<output>
+<soap:body use="literal" namespace="http://publicadores/"/>
+</output>
+<fault name="RegistroAClaseRepetidoException">
+<soap:fault name="RegistroAClaseRepetidoException" use="literal"/>
+</fault>
 </operation>
 <operation name="LogIn">
 <soap:operation soapAction=""/>

@@ -14,6 +14,7 @@ public interface ControladorPublish extends java.rmi.Remote {
     public boolean esSocio(java.lang.String arg0) throws java.rmi.RemoteException;
     public java.lang.String[] usuarioEnClase(java.lang.String arg0) throws java.rmi.RemoteException;
     public java.lang.String[] clasesProfe(java.lang.String arg0) throws java.rmi.RemoteException;
+    public void eliminarRegistro(java.lang.String arg0, java.lang.String arg1) throws java.rmi.RemoteException, main.publicadores.RegistroAClaseRepetidoException;
     public boolean logIn(java.lang.String arg0, java.lang.String arg1) throws java.rmi.RemoteException;
     public void altaInstitucion(java.lang.String arg0, java.lang.String arg1, java.lang.String arg2) throws java.rmi.RemoteException, main.publicadores.InstitucionDeportivaRepetidaException;
     public java.lang.String[] listarInstitutos() throws java.rmi.RemoteException;

@@ -172,4 +172,7 @@ public class ControladorPublish {
     public String[] clasesProfe(String var1){
         return icon.clasesProfe(var1);
     }
+    public void eliminarRegistro(String nick,String clase)throws RegistroAClaseRepetidoException{
+        icon.eliminarRegistro(nick, clase);
+    }
 }

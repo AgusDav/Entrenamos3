@@ -243,7 +243,6 @@
             var claseSeleccionada2 = claseSelect.value;
             actualizarTablaClases(claseSeleccionada2);
         }
-
     </script>
 </form>
 <%@include file="footer.jsp" %>

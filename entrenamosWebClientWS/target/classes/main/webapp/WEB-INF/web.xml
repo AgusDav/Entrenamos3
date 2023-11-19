@@ -136,5 +136,15 @@
     <url-pattern>/ModificarUsuario</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>EliminarRegClaseSer</servlet-name>
+    <servlet-class>main.servlets.EliminarRegClaseServ</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>EliminarRegClaseSer</servlet-name>
+    <url-pattern>/EliminarRegClase</url-pattern>
+  </servlet-mapping>
+
 </web-app>
 

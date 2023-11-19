@@ -60,7 +60,7 @@ public class RegistroADictadoClaseServ extends HttpServlet {
         Calendar date = Calendar.getInstance();
         try {
             registroADictadoClase(nick, clase,date);
-        } catch (ServiceException e) {
+        } catch (Exception e) {
             request.setAttribute("error", "El usuario de nick " + nick + " ya esta en la clase " + clase);
             RequestDispatcher rd = request.getRequestDispatcher("/RegistroADictadoClase.jsp");
             rd.forward(request, response);

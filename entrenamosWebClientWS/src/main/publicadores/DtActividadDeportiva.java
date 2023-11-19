@@ -24,19 +24,6 @@ public class DtActividadDeportiva  implements java.io.Serializable {
     public DtActividadDeportiva() {
     }
 
-    public DtActividadDeportiva(
-           float costo,
-           java.lang.String descripcion,
-           int duracion,
-           java.util.Calendar fecReg,
-           java.lang.String nombre) {
-           this.costo = costo;
-           this.descripcion = descripcion;
-           this.duracion = duracion;
-           this.fecReg = fecReg;
-           this.nombre = nombre;
-    }
-
     public DtActividadDeportiva(String nombre, String descripcion, int duracionInt, float costoFloat, Date fecAlta) {
         super();
         this.nombre = nombre;
