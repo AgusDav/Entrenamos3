@@ -119,11 +119,10 @@ public class EliminarRegClaseServ extends HttpServlet {
 
         try {
             eliminarRegClase(nick, clase);
-        } catch (RemoteException | ServiceException e) {
+        } catch (Exception e) {
             request.setAttribute("error", "El usuario de nick " + nick + " no esta registrado en la clase " + clase);
             RequestDispatcher rd = request.getRequestDispatcher("/EliminarRegClase.jsp");
             rd.forward(request, response);
-            return;
         }
         RequestDispatcher rd;
         request.setAttribute("mensaje", "Se ha eliminado correctamente el usuario " + nick + " de la clase " + clase);
